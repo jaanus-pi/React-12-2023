@@ -6,7 +6,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 
 // Navigeerimine (routing)
-// 1. npm install react-router-dom
+// 1. npm install react-router-dom --lisatakse node_modules kausta routumiseks vajalik kood
 // 2. import BrowserRouter
 // 3. BrowserRouter tag panna <App/> ümber
 // 4. App.js failis tekitada URL ja HTML seosed
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 );

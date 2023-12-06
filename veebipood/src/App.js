@@ -1,28 +1,32 @@
 // import logo from './logo.svg';
 import './App.css';
 import { Link, Route, Routes } from "react-router-dom";
+import Avaleht from './pages/Avaleht';
+import Ostukorv from './pages/Ostukorv';
+import LisaToode from './pages/LisaToode';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <div className="App">
 
-      <Link to="avaleht">
+      <Link to="/">
       <img className="pilt" src="https://estonia.ee/wp-content/uploads/nobe_netist_4.jpg" alt="" />
       </Link>
 
-      <Link to="ostukorv">
+      <Link to="/ostukorv">
       <button className="nupp">Ostukorv</button>
       </Link>
 
-      <Link to="lisa-toode">
+      <Link to="/lisa-toode">
       <button className="nupp">Lisa toode</button>
       </Link>
 
       <Routes>
-        <Route path='avaleht' element={ <div>See on avaleht, mis on nahtav BASE_URL + /avaleht abil</div> } />
-        <Route path='ostukorv' element={ <div>See on ostukorv, mis on nahtav localhost:3000/ostukorv</div> } />
-        <Route path='lisa-toode' element={ <div>Siin saab lisada toodet, mis on nahtav localhost:3000/lisa-toode</div> } />
-        <Route path='*' element={ <div>Not Found Leht</div> } />
+        <Route path='' element={ <Avaleht /> } />
+        <Route path='ostukorv' element={ <Ostukorv /> } />
+        <Route path='lisa-toode' element={ <LisaToode /> } />
+        <Route path='*' element={ <NotFound /> } />
       </Routes>
     
     </div>
