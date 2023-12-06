@@ -9,16 +9,16 @@ function App() {
   return (
     <div className="App">
       <Link to='/'>
-        <button>Avalehele</button>
+        <button className='nav-nupp'>Avalehele</button>
       </Link>
       <Link to='/uudised'>
-        <button>Uudised</button>
+        <button className='nav-nupp'>Uudised</button>
       </Link>
       <Link to='/kontakt'>
-        <button>Võta meiega ühendust</button>
+        <button className='nav-nupp'>Võta meiega ühendust</button>
       </Link>
       <Link to='/meist'>
-        <button>Info meist</button>
+        <button className='nav-nupp'>Info meist</button>
       </Link>
 
       <Routes>
