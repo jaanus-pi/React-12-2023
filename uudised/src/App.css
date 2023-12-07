@@ -26,3 +26,8 @@
 .pilt {
   border-radius: 5px;
 }
+
+.keskus:hover {
+  background-color: rgb(106, 212, 53);
+  cursor: pointer;
+}
