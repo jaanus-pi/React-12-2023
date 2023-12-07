@@ -4,6 +4,8 @@ import Avaleht from './pages/Avaleht';
 import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
 import Seaded from './pages/Seaded';
+import Leht from './pages/Leht';
+import Loader from './pages/Loader';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/kontakt" element={ <Kontakt/> } />
         <Route path="/meist" element={ <Meist /> } />
         <Route path="/seaded" element={ <Seaded /> } />
+        <Route path="/leht" element={ <Leht /> } />
+        <Route path="/loader" element={ <Loader /> } />
       </Routes>    
     </div>
   );
