@@ -1,6 +1,6 @@
 import './App.css';
 import { Link, Route, Routes } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Avaleht from './pages/Avaleht';
 import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
@@ -10,11 +10,37 @@ import Loader from './pages/Loader';
 
 function App() {
   const [sisselogitud, muudaSisselogitud] = useState('ei');
+  const [sonum, muudaSonum] = useState('');
+  const kasutajanimiRef = useRef();
+  const paroolRef = useRef();
+
+  const logiSisse = () => {
+    if (paroolRef.current.value === '123') {
+      muudaSisselogitud('jah');
+      muudaSonum(kasutajanimiRef.current.value + ', oled sisselogitud');
+    } else {
+      muudaSonum('Vale parool');
+    }
+  }
+
+  const logiV2lja = () => {
+    muudaSisselogitud('ei')
+    muudaSonum('');
+  }
 
   return (
     <div className="App">
-      { sisselogitud === 'ei' && <div><button onClick={() => muudaSisselogitud('jah')}>Logi sisse</button> <br /></div>}
-      { sisselogitud === 'jah' && <div><button onClick={() => muudaSisselogitud('ei')}>Logi välja</button> <br /></div>}
+      <div>{sonum}</div>
+      { sisselogitud === 'ei' &&
+        <div>
+        <label>Kasutajanimi</label> <br />
+        <input ref={kasutajanimiRef} type='text' /> <br />
+        <label>Parool</label> <br />
+        <input ref={paroolRef} type='password' /> <br />
+        <button onClick={logiSisse}>Logi sisse</button> <br />
+        </div> }
+
+      { sisselogitud === 'jah' && <div><button onClick={logiV2lja}>Logi välja</button> <br /></div>}
 
       <Link to="/">
         <button className="nupp">Avaleht</button>
