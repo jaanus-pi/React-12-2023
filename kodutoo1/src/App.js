@@ -1,6 +1,7 @@
 import './App.css';
 import { Link, Route, Routes } from "react-router-dom";
 import { useState, useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import Avaleht from './pages/Avaleht';
 import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
@@ -15,16 +16,38 @@ function App() {
   const paroolRef = useRef();
 
   const logiSisse = () => {
-    if (paroolRef.current.value === '123') {
-      muudaSisselogitud('jah');
-      muudaSonum(kasutajanimiRef.current.value + ', oled sisselogitud');
-    } else {
-      muudaSonum('Vale parool');
+    if (paroolRef.current.value.length < 8) {
+      toast.error('Parooli pikkus vähemalt 8 tähemärki!');
+      return;
     }
+
+    if (paroolRef.current.value === paroolRef.current.value.toLowerCase()) {
+      toast.error('Paroolis vähemalt üks suur täht!');
+      return;
+    }
+
+    if (paroolRef.current.value === paroolRef.current.value.toUpperCase()) {
+      toast.error('Paroolis vähemalt üks väike täht!');
+      return;
+    }
+
+    if (paroolRef.current.value.includes('%') === false) {
+      toast.error('Parool ei sisalda % märki!');
+      return;
+    }
+
+    if (paroolRef.current.value === '%TereTere123') {
+      muudaSisselogitud('jah');
+      muudaSonum("Tere " + kasutajanimiRef.current.value + "!");
+      toast.success("Oled sisselogitud");
+      return;
+    }
+    
+    toast.error("Vale parool!");
   }
 
   const logiV2lja = () => {
-    muudaSisselogitud('ei')
+    muudaSisselogitud('ei');
     muudaSonum('');
   }
 
@@ -62,7 +85,12 @@ function App() {
         <Route path="/seaded" element={ <Seaded /> } />
         <Route path="/leht" element={ <Leht /> } />
         <Route path="/loader" element={ <Loader /> } />
-      </Routes>    
+      </Routes>
+
+      <ToastContainer 
+        position="top-right"
+        theme="dark"
+      />    
     </div>
   );
 }
