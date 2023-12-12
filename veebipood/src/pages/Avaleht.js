@@ -35,10 +35,10 @@ function Avaleht() {
 
             <br /><br />
 
-            <div>{sonum}</div>
+            <div className={kogus > 10 ? 'kuldne' : undefined}>{sonum}</div>
             { kogus !== 0 && <button onClick={nulli}>Null</button>}
             <button disabled={kogus === 0} onClick={vahenda}>-</button>
-            <span>{kogus}</span>
+            <span className={kogus > 10 ? 'kuldne' : undefined}>{kogus}</span>
             <button onClick={suurenda}>+</button>
         </div>
     )
