@@ -29,5 +29,16 @@
 
 .keskus:hover {
   background-color: rgb(106, 212, 53);
+  box-shadow: 5px 5px 5px lightgray;
   cursor: pointer;
+}
+
+.valitud-v2li {
+  background-color: rgb(106, 212, 53);
+  box-shadow: 5px 5px 5px lightgray;
+  cursor: pointer;
+}
+
+.valitud-tekst {
+  font-weight: bold;
 }
