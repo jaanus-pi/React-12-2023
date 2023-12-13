@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 
 function LisaToode() {
     const [sonum, uuendaSonum] = useState("Lisa toode!");
+    const [error, uuendaError] = useState(false);
     const inputiLuger = useRef();
 
     // function lisa() {
@@ -16,12 +17,29 @@ function LisaToode() {
         }
     }
 
+    const kontrolli = () => {
+        if (inputiLuger.current.value === "") {
+            uuendaSonum("Kohustuslik väli ei ole täidetud.");
+            uuendaError(true);
+            return;
+        }
+
+        if (inputiLuger.current.value.includes("!")) {
+            uuendaSonum("Hyyumargiga tooteid ei saa lisada.");
+            uuendaError(true);
+            return;
+        }
+
+        uuendaError(false);
+        uuendaSonum("");
+    }
+
     return (
         <div>
             <div>{sonum}</div>
             <label>Uue toote nimi</label> <br />
-            <input ref={inputiLuger} type="text" /> <br />
-            <button onClick={lisa}>Sisesta</button> <br />
+            <input onChange={kontrolli} ref={inputiLuger} type="text" /> <br />
+            <button disabled={error} onClick={lisa}>Sisesta</button> <br />
         </div>
     )
 }
