@@ -12,6 +12,7 @@ import Months from './pages/months';
 import Animals from './pages/animals';
 import Words from './pages/words';
 import Books from './pages/Books';
+import Numbrid from './pages/Numbrid';
 
 function App() {
   const [sisselogitud, muudaSisselogitud] = useState('ei');
@@ -93,6 +94,9 @@ function App() {
       <Link to="/books">
         <button className="nupp">Raamatud</button>
       </Link>
+      <Link to="/numbrid">
+        <button className="nupp">Numbrid</button>
+      </Link>
 
       <Routes>
         <Route path="" element={ <Avaleht /> } />
@@ -105,6 +109,7 @@ function App() {
         <Route path="/animals" element={ <Animals /> } />
         <Route path="/words" element={ <Words /> } />
         <Route path="/books" element={ <Books /> } />
+        <Route path="/numbrid" element={ <Numbrid /> } />
       </Routes>
 
       <ToastContainer 
