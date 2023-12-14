@@ -11,6 +11,7 @@ import Loader from './pages/Loader';
 import Months from './pages/months';
 import Animals from './pages/animals';
 import Words from './pages/words';
+import Books from './pages/Books';
 
 function App() {
   const [sisselogitud, muudaSisselogitud] = useState('ei');
@@ -89,6 +90,9 @@ function App() {
       <Link to="/words">
         <button className="nupp">Sõnad</button>
       </Link>
+      <Link to="/books">
+        <button className="nupp">Raamatud</button>
+      </Link>
 
       <Routes>
         <Route path="" element={ <Avaleht /> } />
@@ -100,6 +104,7 @@ function App() {
         <Route path="/months" element={ <Months /> } />
         <Route path="/animals" element={ <Animals /> } />
         <Route path="/words" element={ <Words /> } />
+        <Route path="/books" element={ <Books /> } />
       </Routes>
 
       <ToastContainer 
