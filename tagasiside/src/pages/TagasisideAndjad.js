@@ -35,6 +35,11 @@ function TagasisideAndjad() {
     muudaNimed(nimed.slice());
   }
 
+  //const insertEST = () => {
+  //  const vastus = nimed.map(element => "EST-" + element);
+  //  muudaNimed(nimed.slice());  
+  //}
+
   return (
     <div>
       Tagasiside andjad:
