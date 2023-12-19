@@ -18,6 +18,7 @@ import HaldaTooted from './pages/HaldaTooted';
 import YksPood from './pages/YksPood';
 import YksToode from './pages/YksToode';
 import YksTootaja from './pages/YksTootaja';
+import Kontakt from './pages/Kontakt';
 
 function App() {
   const [teema, uuendaTeema] = useState(localStorage.getItem("teema") || "light");
@@ -82,8 +83,8 @@ function App() {
       <button className="nupp">Halda töötajaid</button>
       </Link>
 
-      <Link to="/halda-tooted">
-      <button className="nupp">Halda tooteid</button>
+      <Link to="/kontakt">
+      <button className="nupp">Kontakt</button>
       </Link>
 
 
@@ -103,6 +104,7 @@ function App() {
         <Route path='pood/:nimi' element={ <YksPood /> } />
         <Route path='toode/:index' element={ <YksToode /> } />
         <Route path='tootaja' element={ <YksTootaja /> } />
+        <Route path='kontakt' element={ <Kontakt /> } />
         <Route path='*' element={ <NotFound /> } />
       </Routes>
     

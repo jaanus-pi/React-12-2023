@@ -17,7 +17,7 @@ function Poed() {
   }
 
   const sorteeriZA = () => {
-    poed.sort((a,b) => b.nimi.localeCompare(a));
+    poed.sort((a,b) => b.nimi.localeCompare(a.nimi));
     // poed.sort();
     uuendaPoed(poed.slice());
   }
