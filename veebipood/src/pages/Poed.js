@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import poedFailist from '../data/poed.json'
+import { Link } from 'react-router-dom';
 
 function Poed() {
   const [poed, uuendaPoed] = useState(poedFailist);
@@ -9,55 +10,55 @@ function Poed() {
   }
 
   const sorteeriAZ = () => {
-    poed.sort((a,b) => a.localeCompare(b));
+    poed.sort((a,b) => a.nimi.localeCompare(b.nimi));
     // poed.sort();
     uuendaPoed(poed.slice());
     // uuendaPoed([...poed]) ---teeb ka koopia, sama mis slice
   }
 
   const sorteeriZA = () => {
-    poed.sort((a,b) => b.localeCompare(a));
+    poed.sort((a,b) => b.nimi.localeCompare(a));
     // poed.sort();
     uuendaPoed(poed.slice());
   }
 
   const sorteeriKasv = () => {
-    poed.sort((a,b) => a.length - b.length);
+    poed.sort((a,b) => a.nimi.length - b.nimi.length);
     uuendaPoed(poed.slice());
   }
 
   const sorteeriKah = () => {
-    poed.sort((a,b) => b.length - a.length);
+    poed.sort((a,b) => b.nimi.length - a.nimi.length);
     uuendaPoed(poed.slice());
   }
 
   const sorteeriKolmas = () => {
-    poed.sort((a,b) => a[2].localeCompare(b[2]));
+    poed.sort((a,b) => a.nimi[2].localeCompare(b.nimi[2]));
     uuendaPoed(poed.slice());
   }
 
   const sorteeriEgaLoppev = () => {
-    const vastus = poed.filter(yksPood => yksPood.endsWith("e"));
+    const vastus = poed.filter(yksPood => yksPood.nimi.endsWith("e"));
     uuendaPoed(vastus);
   }
 
   const sorteeri9Tahelised = () => {
-    const vastus = poed.filter(yksPood => yksPood.length === 9);
+    const vastus = poed.filter(yksPood => yksPood.nimi.length === 9);
     uuendaPoed(vastus);
   }
 
   const sorteeri7Tahelised = () => {
-    const vastus = poed.filter(yksPood => yksPood.length >= 7);
+    const vastus = poed.filter(yksPood => yksPood.nimi.length >= 7);
     uuendaPoed(vastus);
   }
 
   const sorteeriKellelIs = () => {
-    const vastus = poed.filter(yksPood => yksPood.includes("is"));
+    const vastus = poed.filter(yksPood => yksPood.nimi.includes("is"));
     uuendaPoed(vastus);
   }
 
   const sorteeriKolmasOnI = () => {
-    const vastus = poed.filter(yksPood => yksPood[2] === "i");
+    const vastus = poed.filter(yksPood => yksPood.nimi[2] === "i");
     uuendaPoed(vastus);
   }
 
@@ -77,7 +78,14 @@ function Poed() {
       <button onClick={sorteeri7Tahelised}>Jäta alles vähemalt 7 tähelised</button>
       <button onClick={sorteeriKellelIs}>Jäta alles 'is' sisaldavad</button>
       <button onClick={sorteeriKolmasOnI}>Jäta alles kellel 3s täht 'i'</button>
-      {poed.map(yksPood => <div>{yksPood}</div>)}
+      {poed.map((yksPood, index) => 
+        <div key={index}>
+          {yksPood.nimi} - {yksPood.aadress}
+          <Link to={"/pood/" + yksPood.nimi.toLowerCase().replaceAll(' ', '-')}>
+            <button>Vaata lähemalt</button>
+          </Link>
+        </div>
+        )}
     </div>
   )
 }
