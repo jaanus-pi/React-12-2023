@@ -1,4 +1,4 @@
-import React, { useState, useRef }from 'react'
+import React, { useRef }from 'react'
 import joogidFailist from '../joogid.json'
 
 function LisaJook() {
