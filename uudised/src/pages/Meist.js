@@ -2,9 +2,51 @@ import { useState } from "react";
 
 function Meist() {
     const [kontakt, n2itaKontakt] = useState("");
+    const tootajad = [
+        {
+            "nimi": "Arvo",
+            "ala": "Muusika",
+            "telefon": "Täpsustamisel"
+        },
+        {
+            "nimi": "Kelly",
+            "ala": "Reporter",
+            "telefon": "Täpsustamisel"
+        },
+        {
+            "nimi": "Edward",
+            "ala": "Kujundus",
+            "telefon": "Täpsustamisel"
+        },
+        {
+            "nimi": "Kerli",
+            "ala": "Välisturud",
+            "telefon": "Täpsustamisel"
+        },
+        {
+            "nimi": "Toomas",
+            "ala": "Mehhaanik",
+            "telefon": "Täpsustamisel"
+        },
+        {
+            "nimi": "Koit",
+            "ala": "Klienditeenindus",
+            "telefon": "Täpsustamisel"
+        }
+    ]
 
-    return ( <div>
-        <div>Siin on meie tutvustus, mis on nähtav localhost:3000/meist aadressil.</div>
+    return (
+    <div>
+        <div>Meie töötajad:</div>
+        {tootajad.map(tootaja => 
+            <div>
+                <div className="nimi">{tootaja.nimi}, {tootaja.ala}</div>
+                <button onClick={() => n2itaKontakt(tootaja.telefon)}>Võta ühendust</button>
+            </div>
+            )}
+        <br /><br />
+        { kontakt !== "" && <div>Tema kontakt: {kontakt}</div>}
+        {/* <div>Siin on meie tutvustus, mis on nähtav localhost:3000/meist aadressil.</div>
         <div>Meie töötajad:</div>
         <br />
         <div className="nimi">John Smith</div>
@@ -23,8 +65,9 @@ function Meist() {
         <div>IT Manager</div>
         <button onClick={() => n2itaKontakt("555-234-5678")}>Võta ühendust</button>
         <br /> <br />
-        { kontakt !== "" && <div>Tema kontakt: {kontakt}</div>}
-    </div> );
+        { kontakt !== "" && <div>Tema kontakt: {kontakt}</div>} */}
+    </div> 
+    );
 }
 
 export default Meist;
