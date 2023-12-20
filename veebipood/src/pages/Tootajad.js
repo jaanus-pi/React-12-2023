@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import tootajadFailist from '../data/tootajad.json'
+import { Link } from 'react-router-dom'
 
 function Tootajad() {
   const [tootajad, uuendaTootajad] = useState(tootajadFailist);
@@ -36,6 +37,9 @@ function Tootajad() {
         <div key={index}>
           <span>{tootaja}</span>
           <button onClick={kustutaTootaja}>x</button>
+          <Link to={'/tootaja/' + index}>
+            <button>Detailsemalt</button>
+          </Link>
         </div>
       )}
     </div>

@@ -83,6 +83,10 @@ function App() {
       <button className="nupp">Halda töötajaid</button>
       </Link>
 
+      <Link to="/halda-tooted">
+      <button className="nupp">Halda tooteid</button>
+      </Link>
+
       <Link to="/kontakt">
       <button className="nupp">Kontakt</button>
       </Link>
@@ -103,7 +107,7 @@ function App() {
         <Route path='halda-tooted' element={ <HaldaTooted /> } />
         <Route path='pood/:nimi' element={ <YksPood /> } />
         <Route path='toode/:index' element={ <YksToode /> } />
-        <Route path='tootaja' element={ <YksTootaja /> } />
+        <Route path='tootaja/:index' element={ <YksTootaja /> } />
         <Route path='kontakt' element={ <Kontakt /> } />
         <Route path='*' element={ <NotFound /> } />
       </Routes>
