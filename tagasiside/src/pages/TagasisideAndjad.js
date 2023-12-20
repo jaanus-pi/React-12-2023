@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import nimeFail from '../nimed.json'
+import { Link } from 'react-router-dom'
 
 function TagasisideAndjad() {
   const [nimed, muudaNimed] = useState(nimeFail);
@@ -55,7 +56,14 @@ function TagasisideAndjad() {
       <button onClick={lisaNimiLoppu}>Sisesta</button>
 
       {nimed.map((nimi, index) => 
-      <div>EST-{nimi} <button onClick={() => eemaldaNimi(index)}>X</button></div>)}
+        <div key={index}>
+          EST-{nimi} 
+          <button onClick={() => eemaldaNimi(index)}>X</button>
+          <Link to={'/yksik-tagasiside/' + index}>
+            <button>Detailsemalt</button>
+          </Link>
+        </div>
+        )}
     </div>
   )
 }
