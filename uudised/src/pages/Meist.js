@@ -2,6 +2,8 @@ import { useState } from "react";
 
 function Meist() {
     const [kontakt, n2itaKontakt] = useState("");
+    const [valitud, muudaValitud] = useState("");
+
     const tootajad = [
         {
             "nimi": "Arvo",
@@ -35,13 +37,18 @@ function Meist() {
         }
     ]
 
+    const votaYhendust = (tootaja) => {
+        n2itaKontakt(tootaja.telefon);
+        muudaValitud(tootaja.nimi);
+    }
+
     return (
     <div>
-        <div>Meie töötajad:</div>
-        {tootajad.map(tootaja => 
-            <div>
+        <div>Meie töötajad</div>
+        {tootajad.map((tootaja, index) => 
+            <div className={tootaja.nimi === valitud ? "valitud-tekst" : undefined} key={index}>
                 <div className="nimi">{tootaja.nimi}, {tootaja.ala}</div>
-                <button onClick={() => n2itaKontakt(tootaja.telefon)}>Võta ühendust</button>
+                <button onClick={() => votaYhendust(tootaja)}>Võta ühendust</button>
             </div>
             )}
         <br /><br />
