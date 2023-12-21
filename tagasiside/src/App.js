@@ -4,6 +4,7 @@ import Tagasiside from './pages/Tagasiside';
 import Avaleht from './pages/Avaleht';
 import TagasisideAndjad from './pages/TagasisideAndjad';
 import YksikTagasisideAndja from './pages/YksikTagasisideAndja';
+import Tegevused from './pages/Tegevused';
 
 function App() {
   return (
@@ -17,11 +18,15 @@ function App() {
       <Link to="/tagasiside-andjad">
         <button>Tagasiside andjad</button>
       </Link>
+      <Link to="/tegevused">
+        <button>Tegevused</button>
+      </Link>
       <Routes>
         <Route path="/" element={ <Avaleht /> }/>
         <Route path="/tagasiside" element={ <Tagasiside /> }/>
         <Route path="/tagasiside-andjad" element={ <TagasisideAndjad /> }/>
         <Route path="/yksik-tagasiside/:index" element={ <YksikTagasisideAndja /> }/>
+        <Route path="/tegevused" element={ <Tegevused /> }/>
       </Routes>
     </div>
   );
