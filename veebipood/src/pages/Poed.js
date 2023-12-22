@@ -62,8 +62,15 @@ function Poed() {
     uuendaPoed(vastus);
   }
 
+  const tahedKokku = () => {
+    let summa = 0;
+    poed.forEach(yksPood => summa = summa + yksPood.nimi.length);
+    return summa;
+  }
+
   return (
     <div>
+      <div>Poodide nimede tähtede koguarv: {tahedKokku()}</div>
       <div>{poed.length} tk</div>
       <button onClick={originaali}>Originaal tagasi</button>
       <br />

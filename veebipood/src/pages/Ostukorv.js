@@ -29,6 +29,12 @@ function Ostukorv() {
     uuendaOstukorv(ostukorvFailist.slice());
   }
 
+  const arvutaKogusumma = () => {
+    let summa = 0;
+    ostukorv.forEach(toode => summa = summa + toode.hind);
+    return summa;
+  }
+
   return (
     <div>
       {/* <button onClick={() => uuendaOstukorv(["Coca"])}>Jäta alles Coca</button>
@@ -48,7 +54,10 @@ function Ostukorv() {
 
       {ostukorv.map((toode, index) => 
         <div key={index}>
-          {toode} <button onClick={() => kustuta(index)}>x</button>
+          <img className='pilt' src={toode.pilt} alt='car' />
+          <span>{toode.nimi} - </span>
+          <span>{toode.hind} EUR</span>
+          <button onClick={() => kustuta(index)}>x</button>
           </div>
           )}
       
@@ -59,6 +68,8 @@ function Ostukorv() {
           <button>Avalehele</button>
         </Link>
       </>}
+
+      <div>Kokku: {arvutaKogusumma()} - EUR</div>
     </div>
   )
 }

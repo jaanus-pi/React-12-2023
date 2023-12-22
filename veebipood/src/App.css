@@ -44,3 +44,19 @@
 .kuldne {
   color: goldenrod;
 }
+
+.pilt-mitteaktiivne {
+  filter: grayscale(100%);
+  width: 150px;
+  opacity: 0.3;
+}
+
+.aktiivne {
+  border: 1px solid green;
+  background-color: rgb(233, 236, 233);
+}
+
+.mitteaktiivne {
+  border: 1px solid red;
+  background-color: rgb(231, 231, 231);
+}

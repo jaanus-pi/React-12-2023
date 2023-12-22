@@ -19,6 +19,7 @@ import YksPood from './pages/YksPood';
 import YksToode from './pages/YksToode';
 import YksTootaja from './pages/YksTootaja';
 import Kontakt from './pages/Kontakt';
+import MuudaToode from './pages/MuudaToode';
 
 function App() {
   const [teema, uuendaTeema] = useState(localStorage.getItem("teema") || "light");
@@ -109,6 +110,7 @@ function App() {
         <Route path='toode/:index' element={ <YksToode /> } />
         <Route path='tootaja/:index' element={ <YksTootaja /> } />
         <Route path='kontakt' element={ <Kontakt /> } />
+        <Route path='muuda/:jrknr' element={ <MuudaToode /> } />
         <Route path='*' element={ <NotFound /> } />
       </Routes>
     
