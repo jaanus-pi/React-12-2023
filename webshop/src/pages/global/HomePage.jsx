@@ -3,8 +3,8 @@ import productsFromFile from '../../data/products.json'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import '../../css/HomePage.css'
 import { useTranslation } from 'react-i18next'
+import '../../css/HomePage.css'
 
 const HomePage = () => {
   const [products, setProducts] = useState(productsFromFile);
@@ -40,12 +40,35 @@ const HomePage = () => {
     setProducts(products.slice());
   }
 
+  const filterMensClothing = () => {
+    const filtered = products.filter(product => product.category === "men's clothing");
+    setProducts(filtered);
+  }
+
+  const filterWomensClothing = () => {
+    const filtered = products.filter(product => product.category === "women's clothing");
+    setProducts(filtered);
+  }
+
+  const filterElectronics = () => {
+    const filtered = products.filter(product => product.category === "electronics");
+    setProducts(filtered);
+  }
+
+  const filterJewelery = () => {
+    const filtered = products.filter(product => product.category === "jewelery");
+    setProducts(filtered);
+  }
+
   return (
     <div>
-      <button>men's clothing</button>
-      <button>jewelery</button>
-      <button>electronics</button>
-      <button>women's clothing</button>
+      <div>
+        Filtreeri:
+        <button onClick={filterMensClothing}>men's clothing</button>
+        <button onClick={filterWomensClothing}>women's clothing</button>
+        <button onClick={filterJewelery}>jewelery</button>
+        <button onClick={filterElectronics}>electronics</button>
+      </div>
       <div>
         Sorteeri:
         <button onClick={sortAToZ}>A-Z</button>
