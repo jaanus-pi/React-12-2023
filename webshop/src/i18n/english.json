@@ -14,5 +14,9 @@
   "price": "Price",
   "description": "Description",
   "category": "Category",
-  "image": "Image"
+  "image": "Image",
+  "price-ascending": "Price ascending",
+  "price-descending": "Price descending",
+  "rating-ascending": "Rating ascending",
+  "rating-descending": "Rating descending"
 }
