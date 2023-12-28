@@ -8,5 +8,11 @@
   "add-product": "Lisa toode",
   "maintain-products": "Halda tooteid",
   "delete": "Kustuta",
-  "change": "Muuda"
+  "change": "Muuda",
+  "add": "Lisa",
+  "title": "Nimetus",
+  "price": "Hind",
+  "description": "Kirjeldus",
+  "category": "Kategooria",
+  "image": "Pilt"
 }
