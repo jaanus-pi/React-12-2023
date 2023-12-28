@@ -1,6 +1,8 @@
 import React from 'react'
 import productsFromFile from '../../data/products.json'
 import { useState } from 'react'
+import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import '../../css/HomePage.css'
 import { useTranslation } from 'react-i18next'
 
@@ -61,6 +63,7 @@ const HomePage = () => {
             <div className='title'>{product.title}</div>
             <div>{product.price} €</div>
             <button>Add to cart</button>
+            <Button as={Link} to={'/product/' + product.id}>Details</Button>
           </div>
         )}
       </div>
