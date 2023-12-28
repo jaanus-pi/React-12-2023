@@ -63,14 +63,14 @@ const HomePage = () => {
   return (
     <div>
       <div>
-        Filtreeri:
-        <button onClick={filterMensClothing}>men's clothing</button>
-        <button onClick={filterWomensClothing}>women's clothing</button>
-        <button onClick={filterJewelery}>jewelery</button>
-        <button onClick={filterElectronics}>electronics</button>
+        {t("filter")}:
+        <button onClick={filterMensClothing}>{t("mens-clothing")}</button>
+        <button onClick={filterWomensClothing}>{t("womens-clothing")}</button>
+        <button onClick={filterJewelery}>{t("jewelery")}</button>
+        <button onClick={filterElectronics}>{t("electronics")}</button>
       </div>
       <div>
-        Sorteeri:
+        {t("sort")}:
         <button onClick={sortAToZ}>A-Z</button>
         <button onClick={sortZToA}>Z-A</button>
         <button onClick={sortPriceAscending}>{t('price-ascending')}</button>
@@ -78,15 +78,15 @@ const HomePage = () => {
         <button onClick={sortRatingAscending}>{t('rating-ascending')}</button>
         <button onClick={sortRatingDescending}>{t('rating-descending')}</button>
       </div>
-      <div>Tooteid kokku: {products.length} / {productsFromFile.length}</div>
+      <div>{t("total-products")}: {products.length} / {productsFromFile.length}</div>
       <div className='products'>
         {products.map(product =>
           <div key={product.id} className='product'>
             <img src={product.image} alt='' />
             <div className='title'>{product.title}</div>
             <div>{product.price} €</div>
-            <button>Add to cart</button>
-            <Button as={Link} to={'/product/' + product.id}>Details</Button>
+            <button>{t("add-to-cart")}</button>
+            <Button as={Link} to={'/product/' + product.id}>{t("details")}</Button>
           </div>
         )}
       </div>

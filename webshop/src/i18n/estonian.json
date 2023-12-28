@@ -18,5 +18,14 @@
   "price-ascending": "Hind kasvav",
   "price-descending": "Hind kahanev",
   "rating-ascending": "Hinnang kasvav",
-  "rating-descending": "Hinnang kahanev"
+  "rating-descending": "Hinnang kahanev",
+  "mens-clothing": "Meeste riided",
+  "womens-clothing": "Naiste riided",
+  "jewelery": "Ehted",
+  "electronics": "Elektroonika",
+  "add-to-cart": "Lisa ostukorvi",
+  "details": "Detailid",
+  "filter": "Filtreeri",
+  "sort": "Sorteeri",
+  "total-products": "Tooteid kokku"
 }

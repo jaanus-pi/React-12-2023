@@ -18,5 +18,14 @@
   "price-ascending": "Price ascending",
   "price-descending": "Price descending",
   "rating-ascending": "Rating ascending",
-  "rating-descending": "Rating descending"
+  "rating-descending": "Rating descending",
+  "mens-clothing": "Men's clothing",
+  "womens-clothing": "Women's clothing",
+  "jewelery": "Jewelery",
+  "electronics": "Electronics",
+  "add-to-cart": "Add to cart",
+  "details": "Details",
+  "filter": "Filter",
+  "sort": "Sort",
+  "total-products": "Total products"
 }
