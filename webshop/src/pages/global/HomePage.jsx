@@ -8,6 +8,11 @@ const HomePage = () => {
 
   return (
     <div>
+      <button>men's clothing</button>
+      <button>jewelery</button>
+      <button>electronics</button>
+      <button>women's clothing</button>
+      <div>Tooteid kokku: {products.length} / {productsFromFile.length}</div>
       <div className='products'>
         {products.map(product =>
           <div key={product.id} className='product'>

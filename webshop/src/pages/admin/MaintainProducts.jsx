@@ -1,5 +1,7 @@
 import React from 'react'
 import productsFromFile from '../../data/products.json'
+import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
 const MaintainProducts = () => {
@@ -22,7 +24,7 @@ const MaintainProducts = () => {
             <div>{product.rating.rate}</div>
             <div>{product.rating.count}</div>
             <button>Kustuta</button>
-            <button>Muuda</button>
+            <Button as={Link} to={'/admin/edit/' + product.id}>Muuda</Button>
           </div>
         )}
     </div>
