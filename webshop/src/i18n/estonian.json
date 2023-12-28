@@ -6,5 +6,7 @@
   "maintain-shops": "Halda poode",
   "maintain-categories": "Halda kategooriaid",
   "add-product": "Lisa toode",
-  "maintain-products": "Halda tooteid"
+  "maintain-products": "Halda tooteid",
+  "delete": "Kustuta",
+  "change": "Muuda"
 }

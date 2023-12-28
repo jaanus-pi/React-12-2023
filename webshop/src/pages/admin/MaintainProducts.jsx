@@ -3,12 +3,16 @@ import productsFromFile from '../../data/products.json'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 const MaintainProducts = () => {
   const [products, setProducts] = useState(productsFromFile);
+  const { t } = useTranslation();
 
-  const deleteProduct = () => {
-
+  const deleteProduct = (product) => {
+    const index = productsFromFile.findIndex(element => element.id === Number(product.id));
+    productsFromFile.splice(index, 1);
+    setProducts(productsFromFile.slice());
   }
 
   return (
@@ -23,8 +27,8 @@ const MaintainProducts = () => {
             <div>{product.category}</div>
             <div>{product.rating.rate}</div>
             <div>{product.rating.count}</div>
-            <button>Kustuta</button>
-            <Button as={Link} to={'/admin/edit/' + product.id}>Muuda</Button>
+            <button onClick={() => deleteProduct(product)}>{t('delete')}</button>
+            <Button as={Link} to={'/admin/edit/' + product.id}>{t('change')}</Button>
           </div>
         )}
     </div>

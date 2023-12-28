@@ -6,5 +6,7 @@
   "maintain-shops": "Maintain shops",
   "maintain-categories": "Maintain categories",
   "add-product": "Add product",
-  "maintain-products": "Maintain products"
+  "maintain-products": "Maintain products",
+  "delete": "Delete",
+  "change": "Change"
 }

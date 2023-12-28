@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import productsFromFile from '../../data/products.json'
 
 const EditProduct = () => {
-  const { id } = useParams(); // 3 === "3"
+  const { id } = useParams();
   const found = productsFromFile.find(product => product.id === Number(id));
   const idRef = useRef();
   const titleRef = useRef();
