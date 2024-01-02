@@ -22,6 +22,9 @@ function Avaleht() {
                 <Link to={'/kasutaja-postitus/' + element.userId}>
                     <button className='nav-nupp'>Kõik kasutaja postitused</button>
                 </Link>
+                <Link to={'/yks-postitus/' + element.id}>
+                    <button className='nav-nupp'>Kuva postitus</button>
+                </Link>
                 <br /><br />
             </div>
         )}

@@ -5,6 +5,7 @@ import Uudised from './pages/Uudised';
 import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
 import KasutajaPostitus from './pages/KasutajaPostitus';
+import YksPostitus from './pages/YksPostitus';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='kontakt' element={ <Kontakt /> } />
         <Route path='meist' element={ <Meist /> } />
         <Route path='kasutaja-postitus/:userId' element={ <KasutajaPostitus /> } />
+        <Route path='yks-postitus/:id' element={ <YksPostitus /> } />
       </Routes>
     </div>
   );
