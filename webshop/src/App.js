@@ -16,6 +16,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -67,6 +68,11 @@ function App() {
         <Route path='admin/maintain-shops' element={ <MaintainShops /> }/>
         <Route path='*' element={ <NotFound /> }/>
       </Routes>
+
+      <ToastContainer 
+        position="top-right"
+        theme="light"
+      />  
     </div>
   );
 }

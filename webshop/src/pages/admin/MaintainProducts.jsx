@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useRef } from 'react'
 import '../../css/MaintainProducts.css';
 import { useEffect } from 'react'
+import { toast } from 'react-toastify';
 
 const MaintainProducts = () => {
   const [products, setProducts] = useState([]);
@@ -27,6 +28,7 @@ const MaintainProducts = () => {
     const index = dbProducts.findIndex(element => element.id === Number(product.id));
     dbProducts.splice(index, 1);
     setProducts(dbProducts.slice());
+    toast.success("Product removed")
   }
 
   const searchFromProducts = () => {

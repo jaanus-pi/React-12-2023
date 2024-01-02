@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify';
 import '../../css/HomePage.css'
 
 const HomePage = () => {
@@ -63,6 +64,7 @@ const HomePage = () => {
 
   const addToCart = (product) => {
     cartFromFile.push(product);
+    toast.success("Toode lisatud ostukorvi!");
   }
 
   return (

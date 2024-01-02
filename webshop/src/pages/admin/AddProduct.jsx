@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import productsFromFile from '../../data/products.json'
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
   const { t } = useTranslation();
@@ -14,10 +15,12 @@ const AddProduct = () => {
 
   const updateProduct = () => {
     if (titleRef.current.value[0].toLowerCase() === titleRef.current.value[0]) {
+      toast.error("Title does not start with a capital letter")
       return;
     }
 
     if (priceRef.current.value === '') {
+      toast.error("No price")
       return;
     }
 
@@ -39,6 +42,8 @@ const AddProduct = () => {
     descriptionRef.current.value = '';
     categoryRef.current.value = '';
     imageRef.current.value = '';
+
+    toast.success("Product successfully added!");
   }
 
   const [idUnique, setIdUnique] = useState(true);
@@ -50,6 +55,7 @@ const AddProduct = () => {
     } else {
       setIdUnique(false);
     }
+    console.log("checking");
   }
 
   return (
