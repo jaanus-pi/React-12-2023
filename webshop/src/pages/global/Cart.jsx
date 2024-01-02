@@ -14,13 +14,25 @@ const Cart = () => {
       .then(json => setParcelMachines(json))
   }, []);
 
+  const removeFromCart = (index) => {
+    cartFromFile.splice(index, 1);
+    setCart(cartFromFile.slice());
+  }
+
+  const emptyCart = () => {
+    cartFromFile.splice(0);
+    setCart(cartFromFile.slice());
+  }
+
   return (
     <div>
+      <button onClick={emptyCart}>Empty Cart</button>
       {cart.map((product, index) => 
         <div key={index}>
           <img className='picture' src={product.image} alt='' />
           <span>{product.title} - </span>
           <span>{product.price} EUR</span>
+          <button onClick={() => removeFromCart(index)}>x</button>
           </div>
           )}
       <select>
