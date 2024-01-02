@@ -1,5 +1,6 @@
 import React from 'react'
 import productsFromFile from '../../data/products.json'
+import cartFromFile from '../../data/cart.json'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -60,6 +61,10 @@ const HomePage = () => {
     setProducts(filtered);
   }
 
+  const addToCart = (product) => {
+    cartFromFile.push(product);
+  }
+
   return (
     <div>
       <div>
@@ -85,7 +90,7 @@ const HomePage = () => {
             <img src={product.image} alt='' />
             <div className='title'>{product.title}</div>
             <div>{product.price} €</div>
-            <button>{t("add-to-cart")}</button>
+            <button onClick={() => addToCart(product)}>{t("add-to-cart")}</button>
             <Button as={Link} to={'/product/' + product.id}>{t("details")}</Button>
           </div>
         )}
