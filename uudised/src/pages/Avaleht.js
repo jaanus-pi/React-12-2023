@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Avaleht() {
     const [news, setNews] = useState([]);
@@ -18,7 +19,10 @@ function Avaleht() {
                 <div><u>{element.id}</u></div>
                 <div><b>{element.title}</b></div>
                 <div>{element.body}</div>
-                <br />
+                <Link to={'/kasutaja-postitus/' + element.userId}>
+                    <button className='nav-nupp'>Kõik kasutaja postitused</button>
+                </Link>
+                <br /><br />
             </div>
         )}
     </div> );
