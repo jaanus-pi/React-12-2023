@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
-import productsFromFile from '../../data/products.json'
+// import productsFromFile from '../../data/products.json'
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 const AddProduct = () => {
@@ -12,6 +12,21 @@ const AddProduct = () => {
   const descriptionRef = useRef();
   const categoryRef = useRef();
   const imageRef = useRef();
+  const [dbProducts, setDbProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
+      .then(res => res.json())
+      .then(json => {
+        setDbProducts(json);
+      })
+      fetch(process.env.REACT_APP_CATEGORIES_DB_URL)
+      .then(res => res.json())
+      .then(json => {
+        setCategories(json);
+      })
+  }, []);
 
   const updateProduct = () => {
     if (titleRef.current.value[0].toLowerCase() === titleRef.current.value[0]) {
@@ -24,7 +39,7 @@ const AddProduct = () => {
       return;
     }
 
-    productsFromFile.push({
+    dbProducts.push({
       "id": Number(idRef.current.value),
       "title": titleRef.current.value,
       "price": Number(priceRef.current.value),
@@ -42,14 +57,14 @@ const AddProduct = () => {
     descriptionRef.current.value = '';
     categoryRef.current.value = '';
     imageRef.current.value = '';
-
+    fetch(process.env.REACT_APP_PRODUCTS_DB_URL, {"method": "PUT", "body": JSON.stringify(dbProducts)});
     toast.success("Product successfully added!");
   }
 
   const [idUnique, setIdUnique] = useState(true);
 
   const checkIdUniqueness = () => {
-    const index = productsFromFile.findIndex(element => element.id === Number(idRef.current.value));
+    const index = dbProducts.findIndex(element => element.id === Number(idRef.current.value));
     if (index === -1) {
       setIdUnique(true);
     } else {
@@ -70,7 +85,10 @@ const AddProduct = () => {
       <label>{t('description')}</label>
       <input type='text' ref={descriptionRef} /> <br />
       <label>{t('category')}</label>
-      <input type='text' ref={categoryRef} /> <br />
+      {/* <input type='text' ref={categoryRef} /> <br /> */}
+      <select ref={categoryRef}>
+        {categories.map(category => <option key={category.name}>{category.name}</option>)}
+      </select> <br />
       <label>{t('image')}</label>
       <input type='text' ref={imageRef} /> <br />
       <button disabled={idUnique === false} onClick={updateProduct}>{t('add')}</button>

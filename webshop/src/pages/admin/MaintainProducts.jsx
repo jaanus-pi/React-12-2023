@@ -1,6 +1,6 @@
 import React from 'react'
 // import productsFromFile from '../../data/products.json'
-import { Button } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,7 @@ const MaintainProducts = () => {
   const searchedRef = useRef();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
       .then(res => res.json())
       .then(json => {
         setProducts(json); // väljanägemisega seotult muudan tooteid
@@ -28,7 +28,8 @@ const MaintainProducts = () => {
     const index = dbProducts.findIndex(element => element.id === Number(product.id));
     dbProducts.splice(index, 1);
     setProducts(dbProducts.slice());
-    toast.success("Product removed")
+    toast.success("Product removed");
+    fetch(process.env.REACT_APP_PRODUCTS_DB_URL, {"method": "PUT", "body": JSON.stringify(dbProducts)});
   }
 
   const searchFromProducts = () => {
@@ -37,6 +38,10 @@ const MaintainProducts = () => {
       product.description.toLowerCase().includes(searchedRef.current.value.toLowerCase())
       );
     setProducts(result);
+  }
+
+  if (dbProducts.length === 0) {
+    return <Spinner />
   }
 
   return (

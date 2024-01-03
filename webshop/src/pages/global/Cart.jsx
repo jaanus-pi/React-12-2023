@@ -1,5 +1,5 @@
 import React from 'react'
-import cartFromFile from '../../data/cart.json'
+// import cartFromFile from '../../data/cart.json'
 import '../../css/Cart.css';
 import { useState } from 'react';
 import { useEffect } from 'react'
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [parcelMachines, setParcelMachines] = useState([]);
-  const [cart, setCart] = useState(cartFromFile);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
   useEffect(() => {
     fetch("https://www.omniva.ee/locations.json")
@@ -16,19 +16,21 @@ const Cart = () => {
   }, []);
 
   const removeFromCart = (index) => {
-    cartFromFile.splice(index, 1);
-    setCart(cartFromFile.slice());
+    cart.splice(index, 1);
+    setCart(cart.slice());
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   const emptyCart = () => {
-    cartFromFile.splice(0);
-    setCart(cartFromFile.slice());
+    cart.splice(0);
+    setCart(cart.slice());
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   const calculateCartTotal = () => {
     let sum = 0;
     cart.forEach(product => sum = sum + product.price);
-    return sum;
+    return sum.toFixed(2);
   }
 
   return (

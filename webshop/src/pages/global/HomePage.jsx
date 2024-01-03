@@ -1,16 +1,32 @@
 import React from 'react'
-import productsFromFile from '../../data/products.json'
-import cartFromFile from '../../data/cart.json'
-import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+// import productsFromFile from '../../data/products.json'
+// import cartFromFile from '../../data/cart.json'
+import { useState, useEffect } from 'react'
+import { Button, Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify';
 import '../../css/HomePage.css'
 
 const HomePage = () => {
-  const [products, setProducts] = useState(productsFromFile);
   const { t } = useTranslation();
+  const [products, setProducts] = useState([]);
+  const [dbProducts, setDbProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
+      .then(res => res.json())
+      .then(json => {
+        setProducts(json); // väljanägemisega seotult muudan tooteid
+        setDbProducts(json); // rohkem ei tee, va kui midagi andmebaasiga seotult
+      })
+      fetch(process.env.REACT_APP_CATEGORIES_DB_URL)
+      .then(res => res.json())
+      .then(json => {
+        setCategories(json);
+      })
+  }, []);
 
   const sortAToZ = () => {
     products.sort((a, b) => a.title.localeCompare(b.title));
@@ -42,39 +58,53 @@ const HomePage = () => {
     setProducts(products.slice());
   }
 
-  const filterMensClothing = () => {
-    const filtered = products.filter(product => product.category === "men's clothing");
-    setProducts(filtered);
-  }
+  // const filterMensClothing = () => {
+  //   const filtered = dbProducts.filter(product => product.category === "men's clothing");
+  //   setProducts(filtered);
+  // }
 
-  const filterWomensClothing = () => {
-    const filtered = products.filter(product => product.category === "women's clothing");
-    setProducts(filtered);
-  }
+  // const filterWomensClothing = () => {
+  //   const filtered = dbProducts.filter(product => product.category === "women's clothing");
+  //   setProducts(filtered);
+  // }
 
-  const filterElectronics = () => {
-    const filtered = products.filter(product => product.category === "electronics");
-    setProducts(filtered);
-  }
+  // const filterElectronics = () => {
+  //   const filtered = dbProducts.filter(product => product.category === "electronics");
+  //   setProducts(filtered);
+  // }
 
-  const filterJewelery = () => {
-    const filtered = products.filter(product => product.category === "jewelery");
+  // const filterJewelery = () => {
+  //   const filtered = dbProducts.filter(product => product.category === "jewelery");
+  //   setProducts(filtered);
+  // }
+
+  const filterByCategory = (categoryClicked) => {
+    const filtered = dbProducts.filter(product => product.category === categoryClicked);
     setProducts(filtered);
   }
 
   const addToCart = (product) => {
-    cartFromFile.push(product);
+    // cartFromFile.push(product);
+    const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
+    cartLS.push(product);
+    localStorage.setItem("cart", JSON.stringify(cartLS));
     toast.success("Toode lisatud ostukorvi!");
+  }
+
+  if (dbProducts.length === 0) {
+    return <Spinner />
   }
 
   return (
     <div>
       <div>
         {t("filter")}:
-        <button onClick={filterMensClothing}>{t("mens-clothing")}</button>
+        {/* <button onClick={filterMensClothing}>{t("mens-clothing")}</button>
         <button onClick={filterWomensClothing}>{t("womens-clothing")}</button>
         <button onClick={filterJewelery}>{t("jewelery")}</button>
-        <button onClick={filterElectronics}>{t("electronics")}</button>
+        <button onClick={filterElectronics}>{t("electronics")}</button> */}
+        {categories.map(category => 
+          <button key={category.name} onClick={() => filterByCategory(category.name)}>{t(category.name)}</button>)}
       </div>
       <div>
         {t("sort")}:
@@ -85,7 +115,7 @@ const HomePage = () => {
         <button onClick={sortRatingAscending}>{t('rating-ascending')}</button>
         <button onClick={sortRatingDescending}>{t('rating-descending')}</button>
       </div>
-      <div>{t("total-products")}: {products.length} / {productsFromFile.length}</div>
+      <div>{t("total-products")}: {products.length} / {dbProducts.length}</div>
       <div className='products'>
         {products.map(product =>
           <div key={product.id} className='product'>
