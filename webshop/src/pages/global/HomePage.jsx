@@ -1,6 +1,4 @@
 import React from 'react'
-// import productsFromFile from '../../data/products.json'
-// import cartFromFile from '../../data/cart.json'
 import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import styles from '../../css/HomePage.module.css'
 import SortButtons from '../../components/home/SortButtons'
 import Product from '../../components/home/Product'
+import FilterButtons from '../../components/home/FilterButtons';
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -29,46 +28,17 @@ const HomePage = () => {
       })
   }, []);
 
-  // const filterMensClothing = () => {
-  //   const filtered = dbProducts.filter(product => product.category === "men's clothing");
-  //   setProducts(filtered);
-  // }
-
-  // const filterWomensClothing = () => {
-  //   const filtered = dbProducts.filter(product => product.category === "women's clothing");
-  //   setProducts(filtered);
-  // }
-
-  // const filterElectronics = () => {
-  //   const filtered = dbProducts.filter(product => product.category === "electronics");
-  //   setProducts(filtered);
-  // }
-
-  // const filterJewelery = () => {
-  //   const filtered = dbProducts.filter(product => product.category === "jewelery");
-  //   setProducts(filtered);
-  // }
-
-  const filterByCategory = (categoryClicked) => {
-    const filtered = dbProducts.filter(product => product.category === categoryClicked);
-    setProducts(filtered);
-  }
-
   if (dbProducts.length === 0) {
     return <Spinner />
   }
 
   return (
     <div>
-      <div>
-        {t("filter")}:
-        {/* <button onClick={filterMensClothing}>{t("mens-clothing")}</button>
-        <button onClick={filterWomensClothing}>{t("womens-clothing")}</button>
-        <button onClick={filterJewelery}>{t("jewelery")}</button>
-        <button onClick={filterElectronics}>{t("electronics")}</button> */}
-        {categories.map(category => 
-          <button key={category.name} onClick={() => filterByCategory(category.name)}>{t(category.name)}</button>)}
-      </div>
+      <FilterButtons 
+        categories={categories}
+        setProducts={setProducts}
+        dbProducts={dbProducts}
+      />
       <SortButtons 
         products={products}
         setProducts={setProducts}

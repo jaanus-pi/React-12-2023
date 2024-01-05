@@ -1,10 +1,25 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
+const FilterButtons = ({categories, setProducts, dbProducts}) => {
+  const { t } = useTranslation();
 
-// KOJU
-const FilterButtons = () => {
+  const filterByCategory = (categoryClicked) => {
+    const filtered = dbProducts.filter(product => product.category === categoryClicked);
+    setProducts(filtered);
+  }
+
+  const removeFilter = () => {
+    setProducts(dbProducts);
+  }
+
   return (
-    <div>FilterButtons</div>
+    <div>
+      {t("filter")}:
+      <button onClick={removeFilter}>Show all</button>
+      {categories.map(category => 
+      <button key={category.name} onClick={() => filterByCategory(category.name)}>{t(category.name)}</button>)}
+    </div>
   )
 }
 
