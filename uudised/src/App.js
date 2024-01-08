@@ -7,6 +7,7 @@ import Meist from './pages/Meist';
 import KasutajaPostitus from './pages/KasutajaPostitus';
 import YksPostitus from './pages/YksPostitus';
 import LisaUudis from './pages/LisaUudis';
+import HaldaUudiseid from './pages/HaldaUudiseid';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
       <Link to='/lisa-uudis'>
         <button className='nav-nupp'>Lisa uudis</button>
       </Link>
+      <Link to='/halda'>
+        <button className='nav-nupp'>Halda uudiseid</button>
+      </Link>
 
       <Routes>
         <Route path='' element={ <Avaleht /> } />
@@ -33,6 +37,7 @@ function App() {
         <Route path='kontakt' element={ <Kontakt /> } />
         <Route path='meist' element={ <Meist /> } />
         <Route path='lisa-uudis' element={ <LisaUudis /> } />
+        <Route path='halda' element={ <HaldaUudiseid /> } />
         <Route path='kasutaja-postitus/:userId' element={ <KasutajaPostitus /> } />
         <Route path='yks-postitus/:id' element={ <YksPostitus /> } />
       </Routes>
