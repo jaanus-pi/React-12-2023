@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 
 const ParcelMachines = () => {
   const [parcelMachines, setParcelMachines] = useState([]);
@@ -10,6 +11,10 @@ const ParcelMachines = () => {
       .then(response => response.json())
       .then(json => setParcelMachines(json))
   }, []);
+
+  if (parcelMachines.length === 0) {
+    return <Spinner />
+  }
 
   return (
     <select>
