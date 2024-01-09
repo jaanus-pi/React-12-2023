@@ -4,6 +4,7 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import ChangeView from './ChangeView';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 		
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -17,6 +18,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 		
 const Map = (props) => {
+  const { t } = useTranslation();
   const [shops, setShops] = useState([]);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const Map = (props) => {
       {shops.map(shop =>
         <Marker position={[shop.longitude, shop.latitude]}>
           <Popup>
-            {shop.name} <br /> Avatud {shop.openTime}
+            {shop.name} <br /> {t("open")} {shop.openTime}
           </Popup>
         </Marker>
       )}

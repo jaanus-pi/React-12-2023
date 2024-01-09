@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const MaintainCategories = () => {
+  const { t } = useTranslation();
   const [categories, setCategories] = useState([]);
   const categoryRef = useRef();
 
@@ -17,8 +19,8 @@ const MaintainCategories = () => {
       return;
     }
 
-    if (categoryRef.current.value.includes(" ")) {
-      toast.error("The category name must not contain spaces. Please use hyphens (-) instead.");
+    if (categoryRef.current.value.includes("  ")) {
+      toast.error("The category name must not contrain more than 1 space in a row.");
       return;
     }
 
@@ -42,9 +44,9 @@ const MaintainCategories = () => {
 
   return (
     <div>
-      <label>Name</label> <br />
+      <label>{t("name")}</label> <br />
       <input ref={categoryRef} type="text" /> <br />
-      <button onClick={addCategory}>Add</button> <br />
+      <button onClick={addCategory}>{t("add")}</button> <br />
       {categories.map((category, index) => 
         <div key={category.name}>
           {category.name}

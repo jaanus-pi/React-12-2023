@@ -2,8 +2,10 @@ import React, { useRef, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 // import productsFromFile from '../../data/products.json'
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const EditProduct = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [dbProducts, setDbProducts] = useState([]);
   const found = dbProducts.find(product => product.id === Number(id));
@@ -71,26 +73,26 @@ const EditProduct = () => {
   }
 
   if (found === undefined) {
-    return <div>Toodet ei leitud</div>
+    return <div>{t("product not found")}</div>
   }
 
   return (
     <div>
-      {idUnique === false && <div>Sisestatud ID pole unikaalne!</div>}
-      <label>Id</label>
+      {idUnique === false && <div>{t("entered id is not unique")}!</div>}
+      <label>ID</label>
       <input type='number' onChange={checkIdUniqueness} ref={idRef} defaultValue={found.id} /> <br />
-      <label>Title</label>
+      <label>{t("title")}</label>
       <input type='text' ref={titleRef} defaultValue={found.title} /> <br />
-      <label>Price</label>
+      <label>{t("price")}</label>
       <input type='number' ref={priceRef} defaultValue={found.price} /> <br />
-      <label>Description</label>
+      <label>{t("description")}</label>
       <input type='text' ref={descriptionRef} defaultValue={found.description} /> <br />
-      <label>Category</label>
+      <label>{t("category")}</label>
       {/* <input type='text' ref={categoryRef} defaultValue={found.category} /> <br /> */}
       <select ref={categoryRef} defaultValue={found.category}>
         {categories.map(category => <option key={category.name}>{category.name}</option>)}
       </select> <br />
-      <label>Image</label>
+      <label>{t("image")}</label>
       <input type='text' ref={imageRef} defaultValue={found.image} /> <br />
       <button disabled={idUnique === false} onClick={updateProduct}>Muuda</button>
     </div>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 // import productsFromFile from '../../data/products.json'
 
 const SingleProduct = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [dbProducts, setDbProducts] = useState([]);
   const product = dbProducts.find(product => product.id === Number(id));
@@ -16,7 +18,7 @@ const SingleProduct = () => {
   }, []);
 
   if ( product === undefined ) {
-    return <div>Toodet ei leitud</div>
+    return <div>{t("product not found")}</div>
   }
 
   return (

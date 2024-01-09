@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ParcelMachines from '../../components/cart/ParcelMachines';
 import Payment from '../../components/cart/Payment';
+import { useTranslation } from 'react-i18next'
 
 const Cart = () => {
-  
+  const { t } = useTranslation();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
   const removeFromCart = (index) => {
@@ -47,13 +48,13 @@ const Cart = () => {
     <div>
       {cart.length !== 0 ? 
         <div>
-          Ostukorvis on {cart.length} toode(t)
-          <button onClick={emptyCart}>Empty Cart</button>
+          {t("total products")}: {cart.length}
+          <button onClick={emptyCart}>{t("empty cart")}</button>
         </div> :
         <div>
-          <div>Ostukorv on tuhi</div>
+          <div>{t("cart empty")}</div>
           <Link to='/'>
-            <button>Avalehele</button>
+            <button>{t("home page")}</button>
           </Link>
         </div>
       }
@@ -64,16 +65,20 @@ const Cart = () => {
           <span className={styles.price}>{cartProduct.product.price.toFixed(2)} €</span>
           <span className={styles.quantity}>
             <img className={styles.button} src='/minus.png' onClick={() => decreaseQuantity(index)} alt=''/>
-            <span>{cartProduct.quantity} tk</span>
+            <span>{cartProduct.quantity} {t("pc")}</span>
             <img className={styles.button} src='/plus.png' onClick={() => increaseQuantity(index)} alt=''/>
           </span>
           <span className={styles.total}>{(cartProduct.product.price * cartProduct.quantity).toFixed(2)} €</span>
           <img className={styles.button} src='/remove.png' onClick={() => removeFromCart(index)} alt=''/>
         </div>
       )}
-      <ParcelMachines />
-      <div>Kokku: {calculateCartTotal()} - EUR</div>
-      <Payment sum={calculateCartTotal()} />
+      {cart.length !== 0 &&
+      <div>
+        {t("pick a parcel machine")}:<ParcelMachines />
+        <div>{t("total")}: {calculateCartTotal()} €</div>
+        <Payment sum={calculateCartTotal()} />
+      </div>
+      }
     </div>
   )
 }

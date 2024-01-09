@@ -43,7 +43,7 @@ const HomePage = () => {
         products={products}
         setProducts={setProducts}
       />
-      <div>{t("total-products")}: {products.length} / {dbProducts.length}</div>
+      <div>{t("total products")}: {products.length} / {dbProducts.length}</div>
       <div className={styles.products}>
         {products.map(product =>
           <Product key={product.id} product={product}/>

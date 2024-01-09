@@ -46,19 +46,20 @@ const MaintainProducts = () => {
 
   return (
     <div>
+      <span>{t("search")}:</span>
       <input ref={searchedRef} onChange={searchFromProducts} type='text' />
       <table>
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Rating</th>
-            <th>Count</th>
-            <th>Actions</th>
+            <th>{t("image")}</th>
+            <th>ID</th>
+            <th>{t("title")}</th>
+            <th>{t("price")}</th>
+            <th>{t("description")}</th>
+            <th>{t("category")}</th>
+            <th>{t("rating")}</th>
+            <th>{t("rating count")}</th>
+            <th>{t("actions")}</th>
           </tr>
         </thead>
         <tbody>

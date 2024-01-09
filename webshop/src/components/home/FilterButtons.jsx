@@ -16,7 +16,7 @@ const FilterButtons = ({categories, setProducts, dbProducts}) => {
   return (
     <div>
       {t("filter")}:
-      <button onClick={removeFilter}>Show all</button>
+      <button onClick={removeFilter}>{t("all")}</button>
       {categories.map(category => 
       <button key={category.name} onClick={() => filterByCategory(category.name)}>{t(category.name)}</button>)}
     </div>

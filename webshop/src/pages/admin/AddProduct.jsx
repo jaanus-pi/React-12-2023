@@ -75,8 +75,8 @@ const AddProduct = () => {
 
   return (
     <div>
-      {idUnique === false && <div>Sisestatud ID pole unikaalne!</div>}
-      <label>Id</label>
+      {idUnique === false && <div>{t("entered id is not unique")}!</div>}
+      <label>ID</label>
       <input type='number' onChange={checkIdUniqueness} ref={idRef} /> <br />
       <label>{t('title')}</label>
       <input type='text' ref={titleRef} /> <br />

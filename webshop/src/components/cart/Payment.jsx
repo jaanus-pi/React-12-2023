@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Payment = (props) => {
+  const { t } = useTranslation();
+
   const pay = () => {
     const url = "https://igw-demo.every-pay.com/api/v4/payments/oneoff";
     const paymentData = {
@@ -23,7 +26,7 @@ const Payment = (props) => {
   }
 
   return (
-    <button onClick={pay}>Maksma</button>
+    <button onClick={pay}>{t("pay")}</button>
   )
 }
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next';
 
 const MaintainShops = () => {
+  const { t } = useTranslation();
   const [shops, setShops] = useState([]);
   const nameRef = useRef();
   const longitudeRef = useRef();
@@ -46,15 +48,15 @@ const MaintainShops = () => {
   //andmebaasis kuvada, lisada, kustutada
   return (
     <div>
-      <label>Name</label> <br />
+      <label>{t("name")}</label> <br />
       <input ref={nameRef} type="text" /> <br />
-      <label>Longitude</label> <br />
+      <label>{t("longitude")}</label> <br />
       <input ref={longitudeRef} type="number" /> <br />
-      <label>Latitude</label> <br />
+      <label>{t("latitude")}</label> <br />
       <input ref={latitudeRef} type="number" /> <br />
-      <label>Open hours</label> <br />
+      <label>{t("open hours")}</label> <br />
       <input ref={openTimeRef} type="text" /> <br />
-      <button onClick={addShop}>Add</button> <br />
+      <button onClick={addShop}>{t("add")}</button> <br />
       {shops.map((shop, index) => 
         <div key={shop.name}>
           <div>{shop.name}</div>
