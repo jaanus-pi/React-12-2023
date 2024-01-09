@@ -74,8 +74,10 @@ const MaintainProducts = () => {
               <td>{product.rating.rate}</td>
               <td>{product.rating.count}</td>
               <td>
-                <Button onClick={() => deleteProduct(product)} variant="secondary">{t('delete')}</Button>
-                <Button as={Link} to={'/admin/edit/' + product.id}>{t('change')}</Button>
+                <div className="d-grid gap-2">
+                  <Button onClick={() => deleteProduct(product)} variant="danger">{t('delete')}</Button>
+                  <Button as={Link} to={'/admin/edit/' + product.id}>{t('change')}</Button>
+                </div>
               </td>
             </tr>
           )}
