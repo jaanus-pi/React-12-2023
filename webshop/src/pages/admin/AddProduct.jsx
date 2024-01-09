@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import Button from 'react-bootstrap/Button';
 
 const AddProduct = () => {
   const { t } = useTranslation();
@@ -91,7 +92,7 @@ const AddProduct = () => {
       </select> <br />
       <label>{t('image')}</label>
       <input type='text' ref={imageRef} /> <br />
-      <button disabled={idUnique === false} onClick={updateProduct}>{t('add')}</button>
+      <Button disabled={idUnique === false} onClick={updateProduct}>{t('add')}</Button>
     </div>
   )
 }

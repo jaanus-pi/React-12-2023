@@ -46,3 +46,12 @@
 .total {
   width: 70px;
 }
+
+.payment {
+  width: 50%;
+  margin: auto;
+}
+
+.totalProducts {
+  align-self: flex-end;
+}

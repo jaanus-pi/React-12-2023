@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import Button from 'react-bootstrap/Button';
 
 const Payment = (props) => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ const Payment = (props) => {
   }
 
   return (
-    <button onClick={pay}>{t("pay")}</button>
+    <Button onClick={pay}>{t("pay")}</Button>
   )
 }
 

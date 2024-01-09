@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Spinner } from 'react-bootstrap';
+import { ButtonGroup, Spinner, Button } from 'react-bootstrap';
 import Map from '../../components/Map';
 import { useTranslation } from 'react-i18next';
 		
@@ -22,17 +22,14 @@ const Shops = () => {
 		
   return (
     <div>
-      <button onClick={() => setCoordinates({lngLat: [58.7286, 25.7873], zoom: 7})}>{t("all shops")}</button>
-      <button onClick={() => setCoordinates({lngLat: [59.4378, 24.7574], zoom: 11})}>{t("all shops in tallinn")}</button>
-
-      {/* kuidas homepage sees sai tehtud filterbuttons */}
-      {/* <button onClick={() => setCoordinates({lngLat: [59.4231, 24.7991], zoom: 13})}>Ülemiste</button>
-      <button onClick={() => setCoordinates({lngLat: [59.4277, 24.7193], zoom: 13})}>Kristiine</button>
-      <button onClick={() => setCoordinates({lngLat: [58.3777, 26.7301], zoom: 13})}>Tasku</button> */}
+      <Button onClick={() => setCoordinates({lngLat: [58.7286, 25.7873], zoom: 7})}>{t("all shops")}</Button>{' '}
+      <Button onClick={() => setCoordinates({lngLat: [59.4378, 24.7574], zoom: 11})}>{t("all shops in tallinn")}</Button>{' '}
       <div>
-        {shops.map(shop => 
-          <button key={shop.name} onClick={() => setCoordinates({lngLat: [shop.longitude, shop.latitude], zoom: 13})}>{shop.name}</button>
-        )}
+        <ButtonGroup>
+          {shops.map(shop =>
+            <Button key={shop.name} onClick={() => setCoordinates({lngLat: [shop.longitude, shop.latitude], zoom: 13})} size="sm" variant='secondary'>{shop.name}</Button>
+          )}
+        </ButtonGroup>
       </div>
 
       <Map mapCoordinaates={coordinaates}  />

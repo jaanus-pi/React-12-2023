@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Button, ButtonGroup } from 'react-bootstrap'
 
 const FilterButtons = ({categories, setProducts, dbProducts}) => {
   const { t } = useTranslation();
@@ -15,10 +16,15 @@ const FilterButtons = ({categories, setProducts, dbProducts}) => {
 
   return (
     <div>
-      {t("filter")}:
-      <button onClick={removeFilter}>{t("all")}</button>
-      {categories.map(category => 
-      <button key={category.name} onClick={() => filterByCategory(category.name)}>{t(category.name)}</button>)}
+      <ButtonGroup>
+        <Button onClick={removeFilter}>{t("all")}</Button>
+        {categories.map(category => 
+          <Button 
+            key={category.name} 
+            onClick={() => filterByCategory(category.name)}>{t(category.name)}
+          </Button>
+        )}
+      </ButtonGroup>
     </div>
   )
 }

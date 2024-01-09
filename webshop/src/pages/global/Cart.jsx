@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import ParcelMachines from '../../components/cart/ParcelMachines';
 import Payment from '../../components/cart/Payment';
 import { useTranslation } from 'react-i18next'
+import Button from 'react-bootstrap/Button';
 
 const Cart = () => {
   const { t } = useTranslation();
@@ -47,9 +48,9 @@ const Cart = () => {
   return (
     <div>
       {cart.length !== 0 ? 
-        <div>
-          {t("total products")}: {cart.length}
-          <button onClick={emptyCart}>{t("empty cart")}</button>
+        <div className={styles.product}>
+          <span className={styles.totalProducts}>{t("total products")}: {cart.length} <br /></span>
+          <Button onClick={emptyCart} variant="secondary">{t("empty cart")}</Button>
         </div> :
         <div>
           <div>{t("cart empty")}</div>
@@ -61,7 +62,7 @@ const Cart = () => {
       {cart.map((cartProduct, index) => 
         <div className={styles.product} key={index}>
           <img className={styles.picture} src={cartProduct.product.image} alt='' />
-          <span className={styles.title}>{cartProduct.product.title} -</span>
+          <span className={styles.title}>{cartProduct.product.title}</span>
           <span className={styles.price}>{cartProduct.product.price.toFixed(2)} €</span>
           <span className={styles.quantity}>
             <img className={styles.button} src='/minus.png' onClick={() => decreaseQuantity(index)} alt=''/>
@@ -73,10 +74,11 @@ const Cart = () => {
         </div>
       )}
       {cart.length !== 0 &&
-      <div>
-        {t("pick a parcel machine")}:<ParcelMachines />
+      <div className={styles.payment}>
+        <div>{t("pick a parcel machine")}:</div>
+        <div><ParcelMachines /></div>
         <div>{t("total")}: {calculateCartTotal()} €</div>
-        <Payment sum={calculateCartTotal()} />
+        <div><Payment sum={calculateCartTotal()} /></div>
       </div>
       }
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import Button from 'react-bootstrap/Button';
 
 const MaintainCategories = () => {
   const { t } = useTranslation();
@@ -46,7 +47,7 @@ const MaintainCategories = () => {
     <div>
       <label>{t("name")}</label> <br />
       <input ref={categoryRef} type="text" /> <br />
-      <button onClick={addCategory}>{t("add")}</button> <br />
+      <Button onClick={addCategory}>{t("add")}</Button> <br />
       {categories.map((category, index) => 
         <div key={category.name}>
           {category.name}

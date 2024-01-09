@@ -74,7 +74,7 @@ const MaintainProducts = () => {
               <td>{product.rating.rate}</td>
               <td>{product.rating.count}</td>
               <td>
-                <button onClick={() => deleteProduct(product)}>{t('delete')}</button>
+                <Button onClick={() => deleteProduct(product)} variant="secondary">{t('delete')}</Button>
                 <Button as={Link} to={'/admin/edit/' + product.id}>{t('change')}</Button>
               </td>
             </tr>

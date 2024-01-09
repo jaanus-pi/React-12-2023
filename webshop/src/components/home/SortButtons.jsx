@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Button, ButtonGroup } from 'react-bootstrap'
                   // = (props)
 const SortButtons = ({products, setProducts}) => {
   const { t } = useTranslation();
@@ -36,13 +37,14 @@ const SortButtons = ({products, setProducts}) => {
 
   return (
     <div>
-      {t("sort")}:
-      <button onClick={sortAToZ}>A-Z</button>
-      <button onClick={sortZToA}>Z-A</button>
-      <button onClick={sortPriceAscending}>{t('price ascending')}</button>
-      <button onClick={sortPriceDescending}>{t('price descending')}</button>
-      <button onClick={sortRatingAscending}>{t('rating ascending')}</button>
-      <button onClick={sortRatingDescending}>{t('rating descending')}</button>
+      <ButtonGroup size="sm">
+        <Button variant="secondary" onClick={sortAToZ}>A-Z</Button>
+        <Button variant="secondary" onClick={sortZToA}>Z-A</Button>
+        <Button variant="secondary" onClick={sortPriceAscending}>{t('price ascending')}</Button>
+        <Button variant="secondary" onClick={sortPriceDescending}>{t('price descending')}</Button>
+        <Button variant="secondary" onClick={sortRatingAscending}>{t('rating ascending')}</Button>
+        <Button variant="secondary" onClick={sortRatingDescending}>{t('rating descending')}</Button>
+      </ButtonGroup>
     </div>
   )
 }
