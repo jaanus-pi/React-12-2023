@@ -17,6 +17,7 @@ const EditProduct = () => {
   const imageRef = useRef();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [idUnique, setIdUnique] = useState(true);
 
   useEffect(() => {
     fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
@@ -56,8 +57,6 @@ const EditProduct = () => {
     fetch(process.env.REACT_APP_PRODUCTS_DB_URL, {"method": "PUT", "body": JSON.stringify(dbProducts)})
       .then(() => navigate('/admin/maintain'));
   }
-
-  const [idUnique, setIdUnique] = useState(true);
 
   const checkIdUniqueness = () => {
     if (idRef.current.value === id) {

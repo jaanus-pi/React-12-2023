@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from '../../css/HomePage.module.css'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button, ButtonGroup } from 'react-bootstrap'
 import { toast } from 'react-toastify';
+import { CartSumContext } from '../../store/CartSumContext'
+import { calculateCartTotal } from '../../util/cartUtil'
 
 const Product = ({ product }) => {
   const { t } = useTranslation();
+  const { setCartSum } = useContext(CartSumContext);
 
   const addToCart = (productClicked) => {
     const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
@@ -20,6 +23,7 @@ const Product = ({ product }) => {
     }
     localStorage.setItem("cart", JSON.stringify(cartLS));
     toast.success("Toode lisatud ostukorvi!");
+    setCartSum(calculateCartTotal(cartLS));
   }
 
   return (

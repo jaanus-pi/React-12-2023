@@ -1,12 +1,16 @@
 {
-  "admin": "Admin view",
-  "shops": "Our shops",
-  "contact": "Contact",
-  "cart": "Cart",
-  "maintain shops": "Maintain shops",
-  "maintain categories": "Maintain categories",
-  "add product": "Add product",
-  "maintain products": "Maintain products",
+  "nav": {
+    "admin": "Admin view",
+    "shops": "Our shops",
+    "contact": "Contact",
+    "cart": "Cart"
+  },
+  "admin": {
+    "maintain shops": "Maintain shops",
+    "maintain categories": "Maintain categories",
+    "add product": "Add product",
+    "maintain products": "Maintain products"
+  },
   "delete": "Delete",
   "change": "Change",
   "add": "Add",

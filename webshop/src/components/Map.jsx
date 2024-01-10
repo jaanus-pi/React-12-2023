@@ -15,8 +15,6 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 		
-
-		
 const Map = (props) => {
   const { t } = useTranslation();
   const [shops, setShops] = useState([]);
@@ -25,11 +23,10 @@ const Map = (props) => {
     fetch(process.env.REACT_APP_SHOPS_DB_URL)
       .then(res => res.json())
       .then(json => {
-        setShops(json);
+        setShops(json || []);
       })
   }, []);
 
-		
   return (	
   <div>
     <MapContainer className='map' center={props.mapCoordinaates.lngLat} zoom={props.mapCoordinaates.zoom} scrollWheelZoom={false}>
@@ -49,7 +46,5 @@ const Map = (props) => {
   </div>
   )	
 }
-		
-
 		
 export default Map; 

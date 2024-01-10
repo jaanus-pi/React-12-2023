@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 // import cartFromFile from '../../data/cart.json'
 import styles from '../../css/Cart.module.css';
 import { useState } from 'react';
@@ -7,27 +7,26 @@ import ParcelMachines from '../../components/cart/ParcelMachines';
 import Payment from '../../components/cart/Payment';
 import { useTranslation } from 'react-i18next'
 import Button from 'react-bootstrap/Button';
+import { CartSumContext } from '../../store/CartSumContext';
+import { calculateCartTotal } from '../../util/cartUtil';
 
 const Cart = () => {
   const { t } = useTranslation();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const { setCartSum } = useContext(CartSumContext);
 
   const removeFromCart = (index) => {
     cart.splice(index, 1);
     setCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(calculateCartTotal(cart));
   }
 
   const emptyCart = () => {
     cart.splice(0);
     setCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  const calculateCartTotal = () => {
-    let sum = 0;
-    cart.forEach(p => sum = sum + p.product.price * p.quantity);
-    return sum.toFixed(2);
+    setCartSum("0.00");
   }
 
   const decreaseQuantity = (index) => {
@@ -37,12 +36,14 @@ const Cart = () => {
     }
     setCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(calculateCartTotal(cart));
   }
 
   const increaseQuantity = (index) => {
     cart[index].quantity++;
     setCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(calculateCartTotal(cart));
   }
 
   return (
@@ -77,8 +78,8 @@ const Cart = () => {
       <div className={styles.payment}>
         <div>{t("pick a parcel machine")}:</div>
         <div><ParcelMachines /></div>
-        <div>{t("total")}: {calculateCartTotal()} €</div>
-        <div><Payment sum={calculateCartTotal()} /></div>
+        <div>{t("total")}: {calculateCartTotal(cart)} €</div>
+        <div><Payment sum={calculateCartTotal(cart)} /></div>
       </div>
       }
     </div>

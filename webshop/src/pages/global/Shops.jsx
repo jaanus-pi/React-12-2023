@@ -7,16 +7,18 @@ const Shops = () => {
 	const { t } = useTranslation();
   const [coordinaates, setCoordinates] = useState({lngLat: [59.4378, 24.7574], zoom: 11});
   const [shops, setShops] = useState([]);
+  const [isLoading, setIsLoaded] = useState(true)
 
   useEffect(() => {
     fetch(process.env.REACT_APP_SHOPS_DB_URL)
       .then(res => res.json())
       .then(json => {
-        setShops(json);
+        setShops(json || []);
+        setIsLoaded(false);
       })
   }, []);
 
-  if (shops.length === 0) {
+  if (isLoading) {
     return <Spinner />
   }
 		

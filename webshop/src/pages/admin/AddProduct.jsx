@@ -15,6 +15,7 @@ const AddProduct = () => {
   const imageRef = useRef();
   const [dbProducts, setDbProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [idUnique, setIdUnique] = useState(true);
 
   useEffect(() => {
     fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
@@ -29,7 +30,7 @@ const AddProduct = () => {
       })
   }, []);
 
-  const updateProduct = () => {
+  const add = () => {
     if (titleRef.current.value[0].toLowerCase() === titleRef.current.value[0]) {
       toast.error("Title does not start with a capital letter")
       return;
@@ -62,8 +63,6 @@ const AddProduct = () => {
     toast.success("Product successfully added!");
   }
 
-  const [idUnique, setIdUnique] = useState(true);
-
   const checkIdUniqueness = () => {
     const index = dbProducts.findIndex(element => element.id === Number(idRef.current.value));
     if (index === -1) {
@@ -92,7 +91,7 @@ const AddProduct = () => {
       </select> <br />
       <label>{t('image')}</label>
       <input type='text' ref={imageRef} /> <br />
-      <Button disabled={idUnique === false} onClick={updateProduct}>{t('add')}</Button>
+      <Button disabled={idUnique === false} onClick={add}>{t('add')}</Button>
     </div>
   )
 }
