@@ -13,13 +13,13 @@ const Product = ({ product }) => {
 
   const addToCart = (productClicked) => {
     const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
-    const index = cartLS.findIndex(p => p.product.id === productClicked.id);
+    const index = cartLS.findIndex(p => p.productId === productClicked.id);
     if (index >= 0) {
       cartLS[index].quantity = cartLS[index].quantity + 1;
       // cartLS[index].quantity += 1;
       // cartLS[index].quantity++;
     } else {
-      cartLS.push({"quantity": 1, "product": productClicked});
+      cartLS.push({"quantity": 1, "productId": productClicked.id});
     }
     localStorage.setItem("cart", JSON.stringify(cartLS));
     toast.success("Toode lisatud ostukorvi!");

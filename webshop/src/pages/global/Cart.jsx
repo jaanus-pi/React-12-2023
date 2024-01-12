@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 // import cartFromFile from '../../data/cart.json'
 import styles from '../../css/Cart.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ParcelMachines from '../../components/cart/ParcelMachines';
 import Payment from '../../components/cart/Payment';
@@ -9,41 +9,68 @@ import { useTranslation } from 'react-i18next'
 import Button from 'react-bootstrap/Button';
 import { CartSumContext } from '../../store/CartSumContext';
 import { calculateCartTotal } from '../../util/cartUtil';
+import { Spinner } from 'react-bootstrap';
 
 const Cart = () => {
   const { t } = useTranslation();
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const [cart, setCart] = useState(
+    // JSON.parse(localStorage.getItem("cart")) || []
+    []
+  );
   const { setCartSum } = useContext(CartSumContext);
+  const [loading, setLoading] = useState(true);
+  const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
+      .then(res => res.json())
+      .then(json => { 
+        const cartWithProducts = cartLS.map(cartProduct => ({
+          "quantity": cartProduct.quantity,
+          "product": json.find(dbProduct => dbProduct.id === cartProduct.productId)
+        }));
+        setCart(cartWithProducts)
+        setLoading(false);
+      })
+  }, []);
 
   const removeFromCart = (index) => {
     cart.splice(index, 1);
+    cartLS.splice(index, 1);
     setCart(cart.slice());
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cartLS));
     setCartSum(calculateCartTotal(cart));
   }
 
   const emptyCart = () => {
     cart.splice(0);
+    cartLS.splice(0);
     setCart(cart.slice());
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cartLS));
     setCartSum("0.00");
   }
 
   const decreaseQuantity = (index) => {
     cart[index].quantity--;
+    cartLS[index].quantity--;
     if (cart[index].quantity === 0) {
       cart.splice(index, 1);
     }
     setCart(cart.slice());
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cartLS));
     setCartSum(calculateCartTotal(cart));
   }
 
   const increaseQuantity = (index) => {
     cart[index].quantity++;
+    cartLS[index].quantity++;
     setCart(cart.slice());
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cartLS));
     setCartSum(calculateCartTotal(cart));
+  }
+
+  if (loading) {
+    return <Spinner />
   }
 
   return (
