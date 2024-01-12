@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import { Button, ButtonGroup } from 'react-bootstrap'
 import { toast } from 'react-toastify';
 import { CartSumContext } from '../../store/CartSumContext'
-import { calculateCartTotal } from '../../util/cartUtil'
+import { calculateCartTotalLS } from '../../util/cartUtil'
 
-const Product = ({ product }) => {
+const Product = ({ product, dbProducts }) => {
   const { t } = useTranslation();
   const { setCartSum } = useContext(CartSumContext);
 
@@ -23,7 +23,7 @@ const Product = ({ product }) => {
     }
     localStorage.setItem("cart", JSON.stringify(cartLS));
     toast.success("Toode lisatud ostukorvi!");
-    setCartSum(calculateCartTotal(cartLS));
+    setCartSum(calculateCartTotalLS(cartLS, dbProducts));
   }
 
   return (

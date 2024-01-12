@@ -8,14 +8,16 @@ import { useRef } from 'react';
 import '../../css/MaintainProducts.css';
 import { useEffect } from 'react'
 import { toast } from 'react-toastify';
-import Modal from 'react-bootstrap/Modal';
+import ConfirmationModal from '../../components/ConfirmationModal';
+
 
 const MaintainProducts = () => {
   const [products, setProducts] = useState([]);
   const [dbProducts, setDbProducts] = useState([]);
   const { t } = useTranslation();
   const searchedRef = useRef();
-  const productToBeDeleted = useRef();
+  const confirmationModalRef = useRef();
+  
 
   useEffect(() => {
     fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
@@ -26,13 +28,13 @@ const MaintainProducts = () => {
       })
   }, []);
 
-  const deleteProduct = () => {
-    const index = dbProducts.findIndex(element => element.id === Number(productToBeDeleted.current.id));
+  const deleteProduct = (productClicked) => {
+    const index = dbProducts.findIndex(element => element.id === Number(productClicked.id));
     dbProducts.splice(index, 1);
     setProducts(dbProducts.slice());
     toast.success("Product removed");
     fetch(process.env.REACT_APP_PRODUCTS_DB_URL, {"method": "PUT", "body": JSON.stringify(dbProducts)});
-    setShow(false);
+    confirmationModalRef.current.closeModal();
   }
 
   const searchFromProducts = () => {
@@ -43,34 +45,16 @@ const MaintainProducts = () => {
     setProducts(result);
   }
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = (productClicked) => {
-    productToBeDeleted.current = productClicked;
-    setShow(true);
-  }
-
   if (dbProducts.length === 0) {
     return <Spinner />
   }
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={() => deleteProduct()}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ConfirmationModal 
+        ref={confirmationModalRef}
+        deleteProduct={deleteProduct}
+      />
       <span>{t("search")}:</span>
       <input ref={searchedRef} onChange={searchFromProducts} type='text' />
       <table>
@@ -100,7 +84,7 @@ const MaintainProducts = () => {
               <td>{product.rating.count}</td>
               <td>
                 <div className="d-grid gap-2">
-                  <Button onClick={() => handleShow(product)} variant="danger">{t('delete')}</Button>
+                  <Button onClick={() => confirmationModalRef.current.handleShow(product)} variant="danger">{t('delete')}</Button>
                   <Button as={Link} to={'/admin/edit/' + product.id}>{t('change')}</Button>
                 </div>
               </td>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 // import cartFromFile from '../../data/cart.json'
 import styles from '../../css/Cart.module.css';
 import { useState, useEffect } from 'react';
@@ -19,20 +19,24 @@ const Cart = () => {
   );
   const { setCartSum } = useContext(CartSumContext);
   const [loading, setLoading] = useState(true);
-  const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartLS = useMemo(() => JSON.parse(localStorage.getItem("cart")) || [], []);
+
+  const getCartWithProducts = useCallback((json) => {
+    const cartWithProducts = cartLS.map(cartProduct => ({
+      "quantity": cartProduct.quantity,
+      "product": json.find(dbProduct => dbProduct.id === cartProduct.productId)
+    }));
+    setCart(cartWithProducts)
+  }, [cartLS]);
 
   useEffect(() => {
     fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
       .then(res => res.json())
       .then(json => { 
-        const cartWithProducts = cartLS.map(cartProduct => ({
-          "quantity": cartProduct.quantity,
-          "product": json.find(dbProduct => dbProduct.id === cartProduct.productId)
-        }));
-        setCart(cartWithProducts)
+        getCartWithProducts(json);
         setLoading(false);
       })
-  }, []);
+  }, [getCartWithProducts]);
 
   const removeFromCart = (index) => {
     cart.splice(index, 1);
