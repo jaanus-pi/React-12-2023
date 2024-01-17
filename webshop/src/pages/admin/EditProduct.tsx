@@ -3,36 +3,52 @@ import { useNavigate, useParams } from 'react-router-dom'
 // import productsFromFile from '../../data/products.json'
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Product } from '../../models/Product';
+import { Category } from '../../models/Category';
 
 const EditProduct = () => {
   const { t } = useTranslation();
   const { id } = useParams();
-  const [dbProducts, setDbProducts] = useState([]);
+  const [dbProducts, setDbProducts] = useState<Product[]>([]);
   const found = dbProducts.find(product => product.id === Number(id));
-  const idRef = useRef();
-  const titleRef = useRef();
-  const priceRef = useRef();
-  const descriptionRef = useRef();
-  const categoryRef = useRef();
-  const imageRef = useRef();
+  const idRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLInputElement>(null);
+  const categoryRef = useRef<HTMLSelectElement>(null);
+  const imageRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [idUnique, setIdUnique] = useState(true);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
+    const productUrl = process.env.REACT_APP_PRODUCTS_DB_URL;
+    if (productUrl === undefined) return;
+    fetch(productUrl)
       .then(res => res.json())
       .then(json => {
         setDbProducts(json);
       })
-      fetch(process.env.REACT_APP_CATEGORIES_DB_URL)
+    const categoryUrl = process.env.REACT_APP_CATEGORIES_DB_URL;
+    if (categoryUrl === undefined) return;
+      fetch(categoryUrl)
       .then(res => res.json())
       .then(json => {
         setCategories(json);
       })
   }, []);
 
+  if (found === undefined) {
+    return <div>{t("product not found")}</div>
+  }
+
   const updateProduct = () => {
+    if (idRef.current === null || titleRef.current === null ||
+      priceRef.current === null || categoryRef.current === null ||
+      imageRef.current === null || descriptionRef.current === null) {
+        return;
+      }
+
     if (titleRef.current.value[0].toLowerCase() === titleRef.current.value[0]) {
       return;
     }
@@ -54,25 +70,25 @@ const EditProduct = () => {
         "count": Number(found.rating.count)
       }
     };
-    fetch(process.env.REACT_APP_PRODUCTS_DB_URL, {"method": "PUT", "body": JSON.stringify(dbProducts)})
+    const url = process.env.REACT_APP_PRODUCTS_DB_URL;
+    if (url === undefined) return;
+    fetch(url, {"method": "PUT", "body": JSON.stringify(dbProducts)})
       .then(() => navigate('/admin/maintain'));
   }
 
   const checkIdUniqueness = () => {
-    if (idRef.current.value === id) {
+    const idInput = idRef.current;
+    if (idInput === null) return;
+    if (idInput.value === id) {
       setIdUnique(true);
       return;
     }
-    const index = dbProducts.findIndex(element => element.id === Number(idRef.current.value));
+    const index = dbProducts.findIndex(element => element.id === Number(idInput.value));
     if (index === -1) {
       setIdUnique(true);
     } else {
       setIdUnique(false);
     }
-  }
-
-  if (found === undefined) {
-    return <div>{t("product not found")}</div>
   }
 
   return (

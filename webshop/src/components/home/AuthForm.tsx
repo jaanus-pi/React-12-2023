@@ -2,15 +2,24 @@ import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../store/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const AuthForm = ({ authUrl, buttonName }) => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+type AuthFormProps = {
+  authUrl: string
+  buttonName: string
+}
+
+const AuthForm = ({ authUrl, buttonName }: AuthFormProps) => {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState("");
   const { setLoggedIn } = useContext(AuthContext)
   const url = authUrl + process.env.REACT_APP_API_KEY;
   const navigate = useNavigate();
 
   const submit = () => {
+    if(emailRef.current === null || passwordRef.current === null) {
+      return;
+    }
+
     const payload = {
       "email": emailRef.current.value,
       "password": passwordRef.current.value,

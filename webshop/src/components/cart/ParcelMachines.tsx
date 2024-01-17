@@ -2,14 +2,15 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
+import { Omniva } from '../../models/Omniva';
 
 const ParcelMachines = () => {
-  const [parcelMachines, setParcelMachines] = useState([]);
+  const [parcelMachines, setParcelMachines] = useState<Omniva[]>([]);
 
   useEffect(() => {
     fetch("https://www.omniva.ee/locations.json")
-      .then(response => response.json())
-      .then(json => setParcelMachines(json))
+      .then((response: Response) => response.json())
+      .then((json: Omniva[]) => setParcelMachines(json))
   }, []);
 
   if (parcelMachines.length === 0) {

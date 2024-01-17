@@ -42,8 +42,8 @@ const NavigationBar = () => {
             <Nav>
               <Nav.Link>
                 <span>{cartSum}€</span>
-                <img onClick={changeLangEn} className='lang' src='/english.png' alt='' />
-                <img onClick={changeLangEe} className='lang' src='/estonia.png' alt='' />
+                <img onClick={changeLangEn} className='lang' src={require('../assets/language/english.png')} alt='' />
+                <img onClick={changeLangEe} className='lang' src={require('../assets/language/estonia.png')} alt='' />
               </Nav.Link>
               {loggedIn === false && 
                 <>

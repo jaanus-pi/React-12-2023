@@ -10,27 +10,33 @@ import Button from 'react-bootstrap/Button';
 import { CartSumContext } from '../../store/CartSumContext';
 import { calculateCartTotal } from '../../util/cartUtil';
 import { Spinner } from 'react-bootstrap';
+import { CartProduct } from '../../models/CartProduct';
+import { Product } from '../../models/Product';
+import { LocalStorageProduct } from '../../models/LocalStorageProduct';
 
 const Cart = () => {
   const { t } = useTranslation();
-  const [cart, setCart] = useState(
+  const [cart, setCart] = useState<CartProduct[]>(
     // JSON.parse(localStorage.getItem("cart")) || []
     []
   );
   const { setCartSum } = useContext(CartSumContext);
   const [loading, setLoading] = useState(true);
-  const cartLS = useMemo(() => JSON.parse(localStorage.getItem("cart")) || [], []);
+  const cartLS: LocalStorageProduct[] = useMemo(() => JSON.parse(localStorage.getItem("cart") || "[]"), []);
 
-  const getCartWithProducts = useCallback((json) => {
-    const cartWithProducts = cartLS.map(cartProduct => ({
+  const getCartWithProducts = useCallback((json: Product[]) => {
+    const cartWithProducts = cartLS.map((cartProduct: LocalStorageProduct) => ({
       "quantity": cartProduct.quantity,
-      "product": json.find(dbProduct => dbProduct.id === cartProduct.productId)
+      "product": json.find((dbProduct: Product) => dbProduct.id === cartProduct.productId)
     }));
-    setCart(cartWithProducts)
+    const cartWithoutUndefined = cartWithProducts.filter(p => p.product !== undefined) as CartProduct[];
+    setCart(cartWithoutUndefined)
   }, [cartLS]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
+    const url = process.env.REACT_APP_PRODUCTS_DB_URL;
+    if (url === undefined) return;
+    fetch(url)
       .then(res => res.json())
       .then(json => { 
         getCartWithProducts(json);
@@ -38,7 +44,7 @@ const Cart = () => {
       })
   }, [getCartWithProducts]);
 
-  const removeFromCart = (index) => {
+  const removeFromCart = (index: number) => {
     cart.splice(index, 1);
     cartLS.splice(index, 1);
     setCart(cart.slice());
@@ -54,7 +60,7 @@ const Cart = () => {
     setCartSum("0.00");
   }
 
-  const decreaseQuantity = (index) => {
+  const decreaseQuantity = (index: number) => {
     cart[index].quantity--;
     cartLS[index].quantity--;
     if (cart[index].quantity === 0) {
@@ -65,7 +71,7 @@ const Cart = () => {
     setCartSum(calculateCartTotal(cart));
   }
 
-  const increaseQuantity = (index) => {
+  const increaseQuantity = (index: number) => {
     cart[index].quantity++;
     cartLS[index].quantity++;
     setCart(cart.slice());
@@ -97,12 +103,12 @@ const Cart = () => {
           <span className={styles.title}>{cartProduct.product.title}</span>
           <span className={styles.price}>{cartProduct.product.price.toFixed(2)} €</span>
           <span className={styles.quantity}>
-            <img className={styles.button} src='/minus.png' onClick={() => decreaseQuantity(index)} alt=''/>
+            <img className={styles.button} src={require('../../assets/cart/minus.png')} onClick={() => decreaseQuantity(index)} alt=''/>
             <span>{cartProduct.quantity} {t("pc")}</span>
-            <img className={styles.button} src='/plus.png' onClick={() => increaseQuantity(index)} alt=''/>
+            <img className={styles.button} src={require('../../assets/cart/plus.png')} onClick={() => increaseQuantity(index)} alt=''/>
           </span>
           <span className={styles.total}>{(cartProduct.product.price * cartProduct.quantity).toFixed(2)} €</span>
-          <img className={styles.button} src='/remove.png' onClick={() => removeFromCart(index)} alt=''/>
+          <img className={styles.button} src={require('../../assets/cart/remove.png')} onClick={() => removeFromCart(index)} alt=''/>
         </div>
       )}
       {cart.length !== 0 &&

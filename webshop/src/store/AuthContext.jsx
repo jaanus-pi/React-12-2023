@@ -1,7 +1,10 @@
 // MyContext.js
 import React, { createContext, useState } from 'react';
 
-const AuthContext = createContext({});
+const AuthContext = createContext({
+  loggedIn: false,
+  setLoggedIn: (updatedStatus) => {}
+});
 
 // Create a provider component
 const AuthContextProvider = ({ children }) => {

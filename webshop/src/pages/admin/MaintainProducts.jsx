@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useRef } from 'react';
-import '../../css/MaintainProducts.css';
 import { useEffect } from 'react'
 import { toast } from 'react-toastify';
 import ConfirmationModal from '../../components/ConfirmationModal';
-
+import styles from '../../css/MaintainProducts.module.css';
 
 const MaintainProducts = () => {
   const [products, setProducts] = useState([]);
@@ -74,7 +73,7 @@ const MaintainProducts = () => {
         <tbody>
           {products.map(product =>
             <tr key={product.id}>
-              <td><img className='picture' src={product.image} alt='' /></td>
+              <td><img className={styles.picture} src={product.image} alt='' /></td>
               <td>{product.id}</td>
               <td>{product.title}</td>
               <td>{product.price} €</td>
