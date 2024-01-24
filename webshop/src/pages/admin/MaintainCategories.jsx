@@ -1,17 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
+import { Spinner } from 'react-bootstrap';
 
 const MaintainCategories = () => {
   const { t } = useTranslation();
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
   const categoryRef = useRef();
 
   useEffect(() => {
     fetch(process.env.REACT_APP_CATEGORIES_DB_URL)
       .then(res => res.json())
-      .then(json => setCategories(json || []));
+      .then(json => {
+        setCategories(json || []);
+        setLoading(false);
+      });
   }, []);
 
   const addCategory = () => {
@@ -41,6 +46,10 @@ const MaintainCategories = () => {
         setCategories(categories.slice())
         toast.success("Category deleted");
       });
+  }
+
+  if (loading === true) {
+    return <Spinner />
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,11 +6,29 @@ import { Link } from 'react-router-dom' ;
 import { useTranslation } from 'react-i18next';
 import { CartSumContext } from '../store/CartSumContext';
 import { AuthContext } from '../store/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialize } from '../store/cartSumSlice';
+import { calculateCartTotalLS } from '../util/cartUtil';
 
 const NavigationBar = () => {
   const { t, i18n } = useTranslation();
   const { cartSum } = useContext(CartSumContext);
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const cartSumRedux = useSelector(state => state.cartSum.value);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const url = process.env.REACT_APP_PRODUCTS_DB_URL;
+    if (url === undefined) return;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const totalSum = Number(calculateCartTotalLS(cart, json));
+        dispatch(initialize(totalSum));
+      })
+  }, [dispatch]);
 
   const changeLangEn = () => {
     i18n.changeLanguage('en');
@@ -42,6 +60,7 @@ const NavigationBar = () => {
             <Nav>
               <Nav.Link>
                 <span>{cartSum}€</span>
+                <span>{cartSumRedux.toFixed(2)}€€€</span>
                 <img onClick={changeLangEn} className='lang' src={require('../assets/language/english.png')} alt='' />
                 <img onClick={changeLangEe} className='lang' src={require('../assets/language/estonia.png')} alt='' />
               </Nav.Link>

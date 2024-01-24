@@ -55,3 +55,18 @@
 .totalProducts {
   align-self: flex-end;
 }
+
+@media only screen and (max-width: 600px) {
+  .picture {
+    width: 80px;
+    height: 80px;
+  }
+  .button {
+    width: 40px;
+    height: 40px;
+  }
+  .quantity {
+    height: 50px;
+    width: 140px;
+  }
+}

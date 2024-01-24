@@ -2,14 +2,18 @@ import React, { useContext } from 'react'
 import styles from '../../css/HomePage.module.css'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Button, ButtonGroup } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import { Button as MuiButton} from '@mui/material';
 import { toast } from 'react-toastify';
 import { CartSumContext } from '../../store/CartSumContext'
 import { calculateCartTotalLS } from '../../util/cartUtil'
+import { add } from '../../store/cartSumSlice';
+import { useDispatch } from 'react-redux'
 
 const Product = ({ product, dbProducts }) => {
   const { t } = useTranslation();
   const { setCartSum } = useContext(CartSumContext);
+  const dispatch = useDispatch();
 
   const addToCart = (productClicked) => {
     const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
@@ -24,6 +28,7 @@ const Product = ({ product, dbProducts }) => {
     localStorage.setItem("cart", JSON.stringify(cartLS));
     toast.success("Toode lisatud ostukorvi!");
     setCartSum(calculateCartTotalLS(cartLS, dbProducts));
+    dispatch(add(productClicked.price));
   }
 
   return (
@@ -31,10 +36,8 @@ const Product = ({ product, dbProducts }) => {
       <img src={product.image} alt='' />
       <div className={styles.title}>{product.title}</div>
       <div>{product.price} €</div>
-      <ButtonGroup>
-        <Button onClick={() => addToCart(product)}>{t("add to cart")}</Button>
-        <Button as={Link} to={'/product/' + product.id} variant="secondary">{t("details")}</Button>
-      </ButtonGroup>
+      <MuiButton variant="contained" onClick={() => addToCart(product)}>{t("add to cart")}</MuiButton>
+      <Button variant="danger" as={Link} to={'/product/' + product.id}>{t("details")}</Button>
     </div>
   )
 }

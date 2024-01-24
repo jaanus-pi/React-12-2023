@@ -9,23 +9,18 @@ import { useEffect } from 'react'
 import { toast } from 'react-toastify';
 import ConfirmationModal from '../../components/ConfirmationModal';
 import styles from '../../css/MaintainProducts.module.css';
+import useFetchProducts from '../../util/useFetchProducts';
 
 const MaintainProducts = () => {
   const [products, setProducts] = useState([]);
-  const [dbProducts, setDbProducts] = useState([]);
   const { t } = useTranslation();
   const searchedRef = useRef();
   const confirmationModalRef = useRef();
+  const {dbProducts, loading} = useFetchProducts();
   
-
   useEffect(() => {
-    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
-      .then(res => res.json())
-      .then(json => {
-        setProducts(json); // väljanägemisega seotult muudan tooteid
-        setDbProducts(json); // rohkem ei tee, va kui midagi andmebaasiga seotult
-      })
-  }, []);
+    setProducts(dbProducts);
+  }, [dbProducts]);
 
   const deleteProduct = (productClicked) => {
     const index = dbProducts.findIndex(element => element.id === Number(productClicked.id));
@@ -44,7 +39,7 @@ const MaintainProducts = () => {
     setProducts(result);
   }
 
-  if (dbProducts.length === 0) {
+  if (loading) {
     return <Spinner />
   }
 

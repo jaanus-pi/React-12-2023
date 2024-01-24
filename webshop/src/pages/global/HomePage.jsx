@@ -7,28 +7,27 @@ import styles from '../../css/HomePage.module.css'
 import SortButtons from '../../components/home/SortButtons'
 import Product from '../../components/home/Product'
 import FilterButtons from '../../components/home/FilterButtons';
+import useFetchProducts from '../../util/useFetchProducts';
 
 const HomePage = () => {
   const { t } = useTranslation();
   const [products, setProducts] = useState([]);
-  const [dbProducts, setDbProducts] = useState([]);
+  const {dbProducts, loading} = useFetchProducts();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_PRODUCTS_DB_URL)
-      .then(res => res.json())
-      .then(json => {
-        setProducts(json); // väljanägemisega seotult muudan tooteid
-        setDbProducts(json); // rohkem ei tee, va kui midagi andmebaasiga seotult
-      })
-      fetch(process.env.REACT_APP_CATEGORIES_DB_URL)
-      .then(res => res.json())
-      .then(json => {
-        setCategories(json);
-      })
+    setProducts(dbProducts.slice())
+  }, [dbProducts]);
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_CATEGORIES_DB_URL)
+    .then(res => res.json())
+    .then(json => {
+      setCategories(json);
+    })
   }, []);
 
-  if (dbProducts.length === 0) {
+  if (loading) {
     return <Spinner />
   }
 

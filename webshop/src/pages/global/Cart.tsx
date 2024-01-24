@@ -13,6 +13,8 @@ import { Spinner } from 'react-bootstrap';
 import { CartProduct } from '../../models/CartProduct';
 import { Product } from '../../models/Product';
 import { LocalStorageProduct } from '../../models/LocalStorageProduct';
+import { useDispatch } from 'react-redux';
+import { empty, add, remove } from '../../store/cartSumSlice';
 
 const Cart = () => {
   const { t } = useTranslation();
@@ -23,6 +25,7 @@ const Cart = () => {
   const { setCartSum } = useContext(CartSumContext);
   const [loading, setLoading] = useState(true);
   const cartLS: LocalStorageProduct[] = useMemo(() => JSON.parse(localStorage.getItem("cart") || "[]"), []);
+  const dispatch = useDispatch();
 
   const getCartWithProducts = useCallback((json: Product[]) => {
     const cartWithProducts = cartLS.map((cartProduct: LocalStorageProduct) => ({
@@ -45,6 +48,7 @@ const Cart = () => {
   }, [getCartWithProducts]);
 
   const removeFromCart = (index: number) => {
+    dispatch(remove(cart[index].product.price * cart[index].quantity));
     cart.splice(index, 1);
     cartLS.splice(index, 1);
     setCart(cart.slice());
@@ -61,6 +65,7 @@ const Cart = () => {
   }
 
   const decreaseQuantity = (index: number) => {
+    dispatch(remove(cart[index].product.price));
     cart[index].quantity--;
     cartLS[index].quantity--;
     if (cart[index].quantity === 0) {
@@ -72,6 +77,7 @@ const Cart = () => {
   }
 
   const increaseQuantity = (index: number) => {
+    dispatch(add(cart[index].product.price));
     cart[index].quantity++;
     cartLS[index].quantity++;
     setCart(cart.slice());
