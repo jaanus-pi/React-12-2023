@@ -1,0 +1,9 @@
+.header {
+  margin-top: 35px;
+}
+
+.headerImg {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
