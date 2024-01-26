@@ -1,7 +1,18 @@
+import { useState } from "react";
 import "../css/NavigationBar.css";
 import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
+  const [searchbar, setSearchbar] = useState(false);
+
+  const displaySearchBar = () => {
+    if (searchbar === false) {
+      setSearchbar(true);
+    } else {
+      setSearchbar(false);
+    }
+  }
+
   return (
     <div className="nav">
       <div className="left">
@@ -21,7 +32,8 @@ const NavigationBar = () => {
         </ul>
       </div>
       <div className="right">
-        <i className="searchIcon fa-solid fa-magnifying-glass"></i>
+        {searchbar === true && <input type="text" autoFocus={true} />}
+        <i onClick={() => displaySearchBar()} className="searchIcon fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
   )
