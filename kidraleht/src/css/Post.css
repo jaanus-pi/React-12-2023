@@ -41,3 +41,8 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+.postLink {
+  text-decoration: none;
+  color: inherit;
+}

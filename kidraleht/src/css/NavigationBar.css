@@ -54,3 +54,8 @@
 .homeIcon, .pageName {
   margin-top: 30px;
 }
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+}
