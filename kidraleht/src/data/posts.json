@@ -1,25 +1,73 @@
 [
   {
     "id": 0,
-    "image": "https://cdn.pixabay.com/photo/2021/10/05/15/58/guitar-6683101_1280.jpg",
-    "title": "Akordid",
+    "image": "https://cdn.pixabay.com/photo/2019/07/04/09/09/guitar-4316193_1280.jpg",
+    "title": "Kitarri häälestamine",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
-    "categories": ["lugemine", "näpunäited"]
+    "categories": ["lugemine"]
   },
 
   {
     "id": 1,
-    "image": "https://cdn.pixabay.com/photo/2013/04/11/08/41/guitar-102708_1280.jpg",
-    "title": "Noodid",
+    "image": "https://cdn.pixabay.com/photo/2021/10/05/15/58/guitar-6683101_1280.jpg",
+    "title": "Akordid",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
     "categories": ["lugemine", "harjutused"]
   },
-
+  
   {
     "id": 2,
     "image": "https://cdn.pixabay.com/photo/2015/09/19/01/03/guitar-946701_1280.jpg",
     "title": "Country Roads",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "description": "John Denver - Take Me Home, Country Roads",
     "categories": ["palad"]
+  },
+
+  {
+    "id": 3,
+    "image": "https://cdn.pixabay.com/photo/2015/09/19/01/03/guitar-946701_1280.jpg",
+    "title": "Kauges külas",
+    "description": "Curly Strings - Kauges Külas",
+    "categories": ["palad"]
+  },
+
+  {
+    "id": 4,
+    "image": "https://cdn.pixabay.com/photo/2017/11/12/16/41/musician-2943109_1280.jpg",
+    "title": "Barre akordid",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum ius",
+    "categories": ["lugemine", "näpunäited"]
+  },
+
+  {
+    "id": 5,
+    "image": "https://cdn.pixabay.com/photo/2013/04/11/08/41/guitar-102708_1280.jpg",
+    "title": "Noodid E ja A keelel",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "categories": ["lugemine"]
+  },
+
+  {
+    "id": 6,
+    "image": "https://cdn.pixabay.com/photo/2016/11/23/15/35/acoustic-1853571_1280.jpg",
+    "title": "Seven Nation Army",
+    "description": "The White Stripes - Seven Nation Army",
+    "categories": ["palad", "harjutused"]
+  },
+
+  {
+    "id": 7,
+    "image": "https://cdn.pixabay.com/photo/2016/11/18/15/44/audience-1835431_1280.jpg",
+    "title": "Mollpentatoonika",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    "categories": ["lugemine", "harjutused"]
+  },
+
+  {
+    "id": 8,
+    "image": "https://cdn.pixabay.com/photo/2022/05/04/07/05/guitar-7173355_1280.jpg",
+    "title": "Toonika ja improviseerimine",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    "categories": ["lugemine", "näpunäited"]
   }
 ]
