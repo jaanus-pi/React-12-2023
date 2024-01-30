@@ -1,4 +1,5 @@
-import "../css/Sidebar.css"
+import "../css/Sidebar.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -22,7 +23,9 @@ const Sidebar = () => {
       <div className="sidebarItem">
         <span className="sidebarTitle">CONTACT</span>
         <div className="sidebarContactIcons">
-          <i class="sidebarIcon fa-solid fa-envelope"></i>
+          <Link to="contact" className="sidebarImageLink">
+            <i class="sidebarIcon fa-solid fa-envelope"></i>
+          </Link>
         </div>
       </div>
     </div>

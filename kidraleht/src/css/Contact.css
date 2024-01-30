@@ -40,6 +40,10 @@
   padding: 10px;
 }
 
+.sendButton:hover {
+  background-color: rgb(150, 82, 82);
+}
+
 .contactMessage {
   font-family: 'Lora', serif;
   font-size: 14px;
@@ -56,4 +60,20 @@
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
   color: rgb(27, 27, 27);
+}
+
+.contactMessageBox {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.messageSuccess {
+  border: 3px solid green;
+}
+
+.messageError {
+  border: 3px solid red;
 }

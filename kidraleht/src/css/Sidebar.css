@@ -60,3 +60,16 @@
   font-size: 22px;
   cursor: pointer;
 }
+
+.sidebarImageLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebarImageLink i:hover {
+  font-size: 25px;
+}
+
+.sidebarImageLink i:active {
+  font-size: 20px;
+}
