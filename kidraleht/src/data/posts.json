@@ -1,0 +1,25 @@
+[
+  {
+    "id": 0,
+    "image": "https://cdn.pixabay.com/photo/2021/10/05/15/58/guitar-6683101_1280.jpg",
+    "title": "Akordid",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "categories": ["lugemine", "näpunäited"]
+  },
+
+  {
+    "id": 1,
+    "image": "https://cdn.pixabay.com/photo/2013/04/11/08/41/guitar-102708_1280.jpg",
+    "title": "Noodid",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "categories": ["lugemine", "harjutused"]
+  },
+
+  {
+    "id": 2,
+    "image": "https://cdn.pixabay.com/photo/2015/09/19/01/03/guitar-946701_1280.jpg",
+    "title": "Country Roads",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "categories": ["palad"]
+  }
+]
