@@ -11,7 +11,7 @@ const Sidebar = () => {
           rem nostrum, quisquam aliquam fuga
         </p>
       </div>
-      <div className="sidebarItem">
+      {/* <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
           <li className="sidebarListItem">lugemine</li>
@@ -19,7 +19,7 @@ const Sidebar = () => {
           <li className="sidebarListItem">palad</li>
           <li className="sidebarListItem">näpunäited</li>
         </ul>
-      </div>
+      </div> */}
       <div className="sidebarItem">
         <span className="sidebarTitle">CONTACT</span>
         <div className="sidebarContactIcons">

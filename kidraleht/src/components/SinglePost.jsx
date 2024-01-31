@@ -1,6 +1,7 @@
-import "../css/SinglePost.css"
+import "../css/SinglePost.css";
 
 const singlePost = () => {
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
