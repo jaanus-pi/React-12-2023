@@ -9,6 +9,16 @@
   object-fit: cover;
   border-radius: 7px;
   margin-bottom: 10px;
+  transition-duration: 0.4s;
+}
+
+.activePost:hover img{
+  box-shadow: 0 0 2px 1px rgba(174, 188, 188, 0.5);
+  opacity: 0.7;
+}
+
+.activePost:hover span {
+  font-size: 26px;
 }
 
 .category {
@@ -27,6 +37,7 @@
   font-weight: 500;
   margin-top: 5px;
   cursor: pointer;
+  transition-duration: 0.4s;
 }
 
 .postDesc {

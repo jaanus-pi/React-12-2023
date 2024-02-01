@@ -59,6 +59,7 @@
 .sidebarIcon {
   font-size: 22px;
   cursor: pointer;
+  transition-duration: 0.4s;
 }
 
 .sidebarImageLink {
@@ -66,10 +67,11 @@
   color: inherit;
 }
 
-.sidebarImageLink i:hover {
+.sidebarIcon:hover {
   font-size: 25px;
+  color: rgb(174, 188, 188);
 }
 
-.sidebarImageLink i:active {
+.sidebarIcon:active {
   font-size: 20px;
 }

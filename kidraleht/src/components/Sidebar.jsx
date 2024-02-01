@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebarItem">
-        <span className="sidebarTitle">ABOUT ME AND THIS PAGE</span>
+        <span className="sidebarTitle">MINUST JA KIDRALEHEST</span>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, accusantium aliquid, 
           rem nostrum, quisquam aliquam fuga
@@ -21,7 +21,7 @@ const Sidebar = () => {
         </ul>
       </div> */}
       <div className="sidebarItem">
-        <span className="sidebarTitle">CONTACT</span>
+        <span className="sidebarTitle">KONTAKT</span>
         <div className="sidebarContactIcons">
           <Link to="contact" className="sidebarImageLink">
             <i class="sidebarIcon fa-solid fa-envelope"></i>

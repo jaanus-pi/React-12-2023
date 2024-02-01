@@ -67,13 +67,13 @@ const Contact = () => {
           {notification}
         </div>}
       <form ref={formRef} onSubmit={sendEmail} className="contactForm">
-        <label className="contactLabel">Nimi</label>
+        <label className="contactLabel">NIMI</label>
         <input type='text' name="from_name" ref={nameRef} className="contactInput" autoFocus={true}/>
-        <label className="contactLabel">E-mail</label>
+        <label className="contactLabel">E-MAIL</label>
         <input type='text' name="from_email" ref={emailRef} className="contactInput" placeholder="mail@mail.ee"/>
-        <label className="contactLabel">Sõnum</label>
+        <label className="contactLabel">SÕNUM</label>
         <textarea className="contactInput contactMessage" name="message" ref={messageRef} placeholder="Tekkis küsimusi, ideid? Võta minuga ühendust!"/>
-        <button className="sendButton" type="submit">{loading === false ? <span>Saada</span> : <span>Palun oodake...</span>}</button>
+        <button className="sendButton" type="submit">{loading === false ? <span>SAADA</span> : <span>Palun oodake...</span>}</button>
       </form>
     </div>
   )

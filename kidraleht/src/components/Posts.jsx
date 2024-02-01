@@ -9,15 +9,18 @@ import { useRef, useState } from "react";
 const Posts = () => {
   const [posts, setPosts] = useState(postsFromFile);
   const searchedRef = useRef();
+  const [category, setCategory] = useState("kõik");
 
   const filterCategories = (categoryClicked) => {
     if (categoryClicked === "kõik") {
       setPosts(postsFromFile);
+      setCategory("kõik")
       return;
     }
 
     const filteredPosts = postsFromFile.filter(post => post.categories.includes(categoryClicked));
     setPosts(filteredPosts)
+    setCategory(categoryClicked)
   }
 
   const searchFromPosts = () => {
@@ -26,6 +29,11 @@ const Posts = () => {
       post.description.toLowerCase().includes(searchedRef.current.value.toLowerCase())
       );
     setPosts(result);
+    setCategory("kõik")
+  }
+
+  const focusSearchBar = () => {
+    searchedRef.current.focus();
   }
   
   return (
@@ -39,31 +47,32 @@ const Posts = () => {
         <button onClick={() => filterCategories("palad")}>PALAD</button>
         <button onClick={() => filterCategories("näpunäited")}>NÄPUNÄITED</button>
       </div>
-      <div className="postsBarCenter">
+      {/* <div className="postsBarCenter">
         <span>POSTITUSI {posts.length}/{postsFromFile.length}</span>
-      </div>
+      </div> */}
       <div className="postsSearch">
-        <i className="searchIcon fa-solid fa-magnifying-glass"></i>
+        <i onClick={focusSearchBar} className="searchIcon fa-solid fa-magnifying-glass"></i>
         <input ref={searchedRef} onChange={searchFromPosts} type="text" />
       </div>
     </div>
+    <div className="postsKlickedCategory">
+      <span>{category}</span>
+      <span>{posts.length}/{postsFromFile.length}</span>
+    </div>
     <div className="posts">
-      {/* <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post /> */}
       {posts.map(post =>
       <div className="post">
-        <img className="postImg" src={post.image} alt="" />
-        <Link to={"/post/" + post.route + "/" + post.id} className="postLink"><span className="postTitle">{post.title}</span></Link>
+        <div className="activePost">
+          <Link to={"/post/" + post.route + "/" + post.id}><img className="postImg" src={post.image} alt="" /></Link>
+          <Link to={"/post/" + post.route + "/" + post.id} className="postLink"><span className="postTitle">{post.title}</span></Link>
+        </div>
         <hr />
         <div className="postDesc">
           {post.description}
         </div>
         <div className="postCategories">
           {post.categories.map(category => 
-            <span className="category">{category}</span>
+            <span className="category" onClick={() => filterCategories(category)}>{category}</span>
           )}
         </div>
       </div>)}

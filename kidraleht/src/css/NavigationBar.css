@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   font-family: 'Roboto Condensed', sans-serif;
+  z-index: 1;
 }
 
 .left, .right {
@@ -34,16 +35,20 @@
   font-weight: 600;
 }
 
-.searchIcon {
-  font-size: 18px;
-  color: #666;
-  cursor: pointer;
+.navItem:hover {
+  color: rgb(73, 73, 73);
 }
 
 .homeIcon {
   font-size: 40px;
   color: #666;
   cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+.homeIcon:hover {
+  font-size: 50px;
+  color: rgb(174, 188, 188);
 }
 
 .pageName {
