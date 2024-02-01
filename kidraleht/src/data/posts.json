@@ -3,7 +3,7 @@
     "id": 0,
     "image": "https://cdn.pixabay.com/photo/2019/07/04/09/09/guitar-4316193_1280.jpg",
     "title": "Kitarri häälestamine",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "description": "Standard tuning, kuidas pilli häälestada, erinevad häälestajad, noodinimetused.",
     "categories": ["lugemine"],
     "route": "haalestamine"
   },
@@ -12,7 +12,7 @@
     "id": 1,
     "image": "https://cdn.pixabay.com/photo/2021/10/05/15/58/guitar-6683101_1280.jpg",
     "title": "Akordid",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "description": "Akordivormid ja kuidas neid lugeda, põhilised akordid ning nende levinud kujud.",
     "categories": ["lugemine", "harjutused"],
     "route": "akordid"
   },
@@ -39,7 +39,7 @@
     "id": 4,
     "image": "https://cdn.pixabay.com/photo/2017/11/12/16/41/musician-2943109_1280.jpg",
     "title": "Barre akordid",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum ius",
+    "description": "Mis on barre, F ja Bm, soovitused vasakule käele, keelte tummistamine.",
     "categories": ["lugemine", "näpunäited", "harjutused"],
     "route": "barre=akordid"
   },
@@ -48,7 +48,7 @@
     "id": 5,
     "image": "https://cdn.pixabay.com/photo/2013/04/11/08/41/guitar-102708_1280.jpg",
     "title": "Noodid E ja A keelel",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse accusantium, corporis illum iusto temporibus quos illo.",
+    "description": "Noodid kahel kõige paksemal keelel, täpikeste selgitus, kuidas kasutada F ja Bm kuju ka teiste akordide mängimiseks.",
     "categories": ["lugemine", "harjutused"],
     "route": "noodid"
   },
@@ -66,7 +66,7 @@
     "id": 7,
     "image": "https://cdn.pixabay.com/photo/2016/11/18/15/44/audience-1835431_1280.jpg",
     "title": "Mollpentatoonika",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    "description": "A-moll pentatoonika skaala kitarrikaelal, milliseid sõrmi kasutada, kasulik soojendusharjutus.",
     "categories": ["lugemine", "harjutused"],
     "route": "mollpentatoonika"
   },
@@ -75,7 +75,7 @@
     "id": 8,
     "image": "https://cdn.pixabay.com/photo/2022/05/04/07/05/guitar-7173355_1280.jpg",
     "title": "Toonika ja improviseerimine",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    "description": "Kõlalised lahendused, toonika, improviseerimine mollpentatoonikaga ning kuidas õpitud vormi liigutada erinevate helistike jaoks.",
     "categories": ["lugemine", "näpunäited"],
     "route": "toonika-ja-impro"
   }

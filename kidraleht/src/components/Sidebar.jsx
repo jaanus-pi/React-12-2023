@@ -7,8 +7,16 @@ const Sidebar = () => {
       <div className="sidebarItem">
         <span className="sidebarTitle">MINUST JA KIDRALEHEST</span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, accusantium aliquid, 
-          rem nostrum, quisquam aliquam fuga
+          Olen Jaanus, väiksemat sorti kidramees ja loodetavasti ka tulevane suur veebiarendaja!
+        </p>
+        <p>
+          Lehel olevad materjalid võiksid olla kasulikud täiesti algajale roki- ja popi-fännile, kelle valitud tööriist enda tunnete ja musikaalsuse väljendamiseks on akustiline või elektriline kitarr.
+        </p>
+        <p>
+          Suurtemate unistuste korral või juba kidramehe staatuse omastanud inimestele soovitan YouTube'st kindlasti uurida JustinGuitar või Eric Haugen Guitar kohta.
+        </p>
+        <p>
+          Head harjutamist! 🤘
         </p>
       </div>
       {/* <div className="sidebarItem">
