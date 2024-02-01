@@ -3,7 +3,7 @@
 }
 
 .singlePostWrapper {
-  padding: 20px;
+  padding: 0 20px;
   padding-right: 0;
 }
 
@@ -32,13 +32,8 @@
 }
 
 .postContent {
-  font-size: 18px;
-}
-
-.postContent::first-letter {
-  margin-left: 20px;
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Inclusive Sans', sans-serif;
 }
 
 .postContent p {
@@ -51,4 +46,8 @@
 
 .postContent div {
   margin-bottom: 40px
+}
+
+hr {
+  margin: 10px 0;
 }

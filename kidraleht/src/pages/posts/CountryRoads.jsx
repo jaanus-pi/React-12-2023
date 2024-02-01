@@ -17,7 +17,6 @@ const CountryRoads = () => {
         <img src={post.image} alt="" className="singlePostImage" />
         <h1 className="singlePostTitle">{post.title}</h1>
         <div className="singlePostInfo">
-          <span className="singlePostAuthor">Autor: name</span>
         </div>
         <div className="postContent">
           {post.description}
