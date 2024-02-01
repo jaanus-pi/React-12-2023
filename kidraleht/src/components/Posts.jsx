@@ -30,15 +30,22 @@ const Posts = () => {
   
   return (
     <div>
-    <div>
-      Categories:
-      <button onClick={() => filterCategories("kõik")}>kõik</button>
-      <button onClick={() => filterCategories("lugemine")}>lugemine</button>
-      <button onClick={() => filterCategories("harjutused")}>harjutused</button>
-      <button onClick={() => filterCategories("palad")}>palad</button>
-      <button onClick={() => filterCategories("näpunäited")}>näpunäited</button>
-      <i className="searchIcon fa-solid fa-magnifying-glass"></i>
-      <input ref={searchedRef} onChange={searchFromPosts} type="text" />
+    <div className="postsTopBar">
+      <div className="postsCategories">
+        <span>KATEGOORIAD</span>
+        <button onClick={() => filterCategories("kõik")}>KÕIK</button>
+        <button onClick={() => filterCategories("lugemine")}>LUGEMINE</button>
+        <button onClick={() => filterCategories("harjutused")}>HARJUTUSED</button>
+        <button onClick={() => filterCategories("palad")}>PALAD</button>
+        <button onClick={() => filterCategories("näpunäited")}>NÄPUNÄITED</button>
+      </div>
+      <div className="postsBarCenter">
+        <span>POSTITUSI {posts.length}/{postsFromFile.length}</span>
+      </div>
+      <div className="postsSearch">
+        <i className="searchIcon fa-solid fa-magnifying-glass"></i>
+        <input ref={searchedRef} onChange={searchFromPosts} type="text" />
+      </div>
     </div>
     <div className="posts">
       {/* <Post />

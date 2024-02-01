@@ -4,3 +4,69 @@
   flex-wrap: wrap;
   margin: 20px;
 }
+
+.postsTopBar {
+  margin-left: 45px;
+  display: flex;
+  font-family: 'Roboto Condensed', sans-serif;
+  flex-wrap: wrap;
+}
+
+.postsCategories {
+  font-size: 17px;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  margin-top: 5px;
+}
+
+.postsCategories span {
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.postsCategories button {
+  margin-left: 5px;
+}
+
+.postsSearch {
+  padding: 5px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+}
+
+.postsSearch input {
+  padding: 3px;
+  margin-left: 5px;
+  border: 3px solid rgb(122, 122, 122);
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Inclusive Sans', sans-serif;
+}
+
+.postsSearch input:focus {
+  border: 3px solid black;
+  outline: none;
+}
+
+.postsSearch {
+  flex: 2;
+  margin-right: 45px;
+}
+
+.postsBarCenter {
+  flex: 6;
+  margin-left: 50px;
+  padding: 5px;
+  margin-top: 12px;
+  min-width: 150px;
+}
+
+.postsBarCenter span {
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 5px;
+}
