@@ -22,7 +22,7 @@ const Sidebar = () => {
       <div className="sidebarItem">
         <span className="sidebarTitle">KONTAKT</span>
         <div className="sidebarContactIcons">
-          <Link to="contact" className="sidebarImageLink">
+          <Link to="/contact" className="sidebarImageLink">
             <i class="sidebarIcon fa-solid fa-envelope"></i>
           </Link>
         </div>
