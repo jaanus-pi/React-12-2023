@@ -1,5 +1,4 @@
 import "../css/Posts.css"
-import Post from "./Post"
 import "../css/Post.css"
 import { Link } from "react-router-dom";
 import postsFromFile from "../data/posts.json";

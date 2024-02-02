@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../css/NavigationBar.css";
 import { Link } from "react-router-dom";
 
