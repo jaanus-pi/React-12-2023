@@ -49,6 +49,9 @@ const AuthForm = ({ authUrl, buttonName }: AuthFormProps) => {
       <label>Password</label> <br />
       <input ref={passwordRef} type="password" /> <br />
       <button onClick={submit}>{buttonName}</button>
+      <div>
+        Use test@test.ee and password 123456 to see admin functionality, or sign up with random credentials.
+      </div>
     </div>
   )
 }

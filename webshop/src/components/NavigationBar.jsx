@@ -59,8 +59,8 @@ const NavigationBar = () => {
             </Nav>
             <Nav>
               <Nav.Link>
-                <span>{cartSum}€</span>
-                <span>{cartSumRedux.toFixed(2)}€€€</span>
+                {/* <span>{cartSum}€</span> */}
+                <span>Sum: {cartSumRedux.toFixed(2)}€ </span>
                 <img onClick={changeLangEn} className='lang' src={require('../assets/language/english.png')} alt='' />
                 <img onClick={changeLangEe} className='lang' src={require('../assets/language/estonia.png')} alt='' />
               </Nav.Link>

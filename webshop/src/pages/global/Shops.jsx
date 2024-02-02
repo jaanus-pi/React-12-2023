@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ButtonGroup, Spinner, Button } from 'react-bootstrap';
 import Map from '../../components/Map';
 import { useTranslation } from 'react-i18next';
+import { Button as MuiButton} from '@mui/material';
 		
 const Shops = () => {
 	const { t } = useTranslation();
@@ -24,8 +25,8 @@ const Shops = () => {
 		
   return (
     <div>
-      <Button onClick={() => setCoordinates({lngLat: [58.7286, 25.7873], zoom: 7})}>{t("all shops")}</Button>{' '}
-      <Button onClick={() => setCoordinates({lngLat: [59.4378, 24.7574], zoom: 11})}>{t("all shops in tallinn")}</Button>{' '}
+      <MuiButton onClick={() => setCoordinates({lngLat: [58.7286, 25.7873], zoom: 7})}>{t("all shops")}</MuiButton>{' '}
+      <MuiButton onClick={() => setCoordinates({lngLat: [59.4378, 24.7574], zoom: 11})}>{t("all shops in tallinn")}</MuiButton>{' '}
       <div>
         <ButtonGroup>
           {shops.map(shop =>
