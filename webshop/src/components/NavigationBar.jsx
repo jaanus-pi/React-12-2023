@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom' ;
 import { useTranslation } from 'react-i18next';
-import { CartSumContext } from '../store/CartSumContext';
+// import { CartSumContext } from '../store/CartSumContext';
 import { AuthContext } from '../store/AuthContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialize } from '../store/cartSumSlice';
@@ -12,7 +12,7 @@ import { calculateCartTotalLS } from '../util/cartUtil';
 
 const NavigationBar = () => {
   const { t, i18n } = useTranslation();
-  const { cartSum } = useContext(CartSumContext);
+  // const { cartSum } = useContext(CartSumContext);
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
   const cartSumRedux = useSelector(state => state.cartSum.value);
   const dispatch = useDispatch();
