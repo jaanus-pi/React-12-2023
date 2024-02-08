@@ -36,7 +36,7 @@
   font-family: 'Roboto Condensed', sans-serif;
   border-radius: 3px;
   border: none;
-  transition-duration: 0.4s;
+  transition: 0.4s;
 }
 
 .postsCategories button:hover {

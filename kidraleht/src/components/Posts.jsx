@@ -62,8 +62,8 @@ const Posts = () => {
       {posts.map(post =>
       <div className="post">
         <div className="activePost">
-          <Link to={"/post/" + post.route + "/" + post.id}><img className="postImg" src={post.image} alt="" /></Link>
-          <Link to={"/post/" + post.route + "/" + post.id} className="postLink"><span className="postTitle">{post.title}</span></Link>
+          <Link to={"/post/" + post.route + "/" + post.id} className="postLink"><img className="postImg" src={post.image} alt="" />
+          <span className="postTitle">{post.title}</span></Link>
         </div>
         <hr />
         <div className="postDesc">
